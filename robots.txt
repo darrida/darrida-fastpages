@@ -1,1 +1,1 @@
-Sitemap: https://www.darrida.com/posts/sitemap.xml
+Sitemap: https://darrida.com/posts/sitemap.xml

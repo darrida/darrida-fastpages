@@ -1,1 +1,1 @@
-Sitemap: https://darrida.github.io/darrida-fastpages/sitemap.xml
+Sitemap: https://www.darrida.com/posts/sitemap.xml

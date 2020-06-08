@@ -211,20 +211,16 @@ RECORD,ID,OLD_VALUE,FINAL_VALUE,DATE,TABLE,COLUMN
 <p>In the sample information above there are 4 different unintended transformations of data that occurred:</p>
 <p>id1: Example series of changes that ended back at the correct value:</p>
 
-<pre><code>csv
-02/01: value1  =&gt;  value2  |  02/02: value2  =&gt;  value3  |  02/03: value3  =&gt;  value1</code></pre>
+<pre><code>02/01: value1  =&gt;  value2  |  02/02: value2  =&gt;  value3  |  02/03: value3  =&gt;  value1</code></pre>
 <p>id2: Example of series of changes that ended with a complete removal of the value:</p>
 
-<pre><code>csv
-02/01: value4  =&gt;  value5  |  02/02: No Changes  |  02/03: value5  =&gt;  null</code></pre>
+<pre><code>02/01: value4  =&gt;  value5  |  02/02: No Changes  |  02/03: value5  =&gt;  null</code></pre>
 <p>id3: Example of series of changes that ended at a different number:</p>
 
-<pre><code>csv
-02/01: value6  =&gt;  value7  |  02/02: value7  =&gt;  value8  |  02/03: No Changes</code></pre>
+<pre><code>02/01: value6  =&gt;  value7  |  02/02: value7  =&gt;  value8  |  02/03: No Changes</code></pre>
 <p>id4: Example of series of changes that ended up a different id's value (data not only incorrect, but conflicting):</p>
 
-<pre><code>csv
-02/01: value10  =&gt;  value11  |  02/02: value11  =&gt;  value12  |  02/03: value12  =&gt;  value4</code></pre>
+<pre><code>02/01: value10  =&gt;  value11  |  02/02: value11  =&gt;  value12  |  02/03: value12  =&gt;  value4</code></pre>
 
 </div>
 </div>
@@ -288,6 +284,7 @@ RECORD,ID,OLD_VALUE,FINAL_VALUE,DATE,TABLE,COLUMN
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">'2020-06-08/audit_record.csv'</span><span class="p">))</span>
+
 <span class="n">dict_by_user</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
     <span class="n">dict_by_user</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">'ID'</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -327,118 +324,93 @@ RECORD,ID,OLD_VALUE,FINAL_VALUE,DATE,TABLE,COLUMN
 </div>
 </div>
 </div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<details class="description">
-      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
-        <p></p>
-<div class="input">
-
+<div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
-<span class="kn">import</span> <span class="nn">pprint</span>
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
 <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">dict_by_user</span><span class="p">)</span>
+
+<span class="n">defaultdict</span><span class="p">(</span><span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">list</span><span class="s1">'&gt;,</span>
+            <span class="p">{</span><span class="s1">' id1'</span><span class="p">:</span> <span class="p">[</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">' id1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">'value2'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/01/2020'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">)]),</span>
+                      <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">' id1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value2'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">'value3'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/02/2020'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">)]),</span>
+                      <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">' id1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">'value1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/03/2020'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ORIGINAL_DATE'</span><span class="p">,</span> <span class="s1">'02/01/2020'</span><span class="p">)])],</span>
+             <span class="s1">' id2'</span><span class="p">:</span> <span class="p">[</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'4'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">' id2'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value4'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">'value5'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/01/2020'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">)]),</span>
+                      <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'5'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">' id2'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value4'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/03/2020'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ORIGINAL_DATE'</span><span class="p">,</span> <span class="s1">'02/01/2020'</span><span class="p">)])],</span>
+             <span class="s1">' id3'</span><span class="p">:</span> <span class="p">[</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'6'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">' id3'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value6'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">'value7'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/01/2020'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">)]),</span>
+                      <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'7'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">' id3'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value6'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">'value9'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/02/2020'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ORIGINAL_DATE'</span><span class="p">,</span> <span class="s1">'02/01/2020'</span><span class="p">)])],</span>
+             <span class="s1">' id4'</span><span class="p">:</span> <span class="p">[</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'8'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">' id4'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value10'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">'value11'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/01/2020'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">)]),</span>
+                      <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'9'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">' id4'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value10'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">'value12'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/02/2020'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s1">'ORIGINAL_DATE'</span><span class="p">,</span> <span class="s1">'02/01/2020'</span><span class="p">)])],</span>
+             <span class="s1">'id4'</span><span class="p">:</span> <span class="p">[</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'RECORD'</span><span class="p">,</span> <span class="s1">'10'</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s1">'ID'</span><span class="p">,</span> <span class="s1">'id4'</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span> <span class="s1">'value12'</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span> <span class="s1">'value4'</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s1">'DATE'</span><span class="p">,</span> <span class="s1">'02/03/2020'</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s1">'TABLE'</span><span class="p">,</span> <span class="s1">' table1'</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s1">'COLUMN'</span><span class="p">,</span> <span class="s1">' column1'</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s1">'ORIGINAL_DATE'</span><span class="p">,</span> <span class="s1">'02/03/2020'</span><span class="p">)])]})</span>
 </pre></div>
 
-    </div>
 </div>
 </div>
-
-    </details>
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>defaultdict(&lt;class 'list'&gt;,
-            {' id1': [OrderedDict([('RECORD', '1'),
-                                   ('ID', ' id1'),
-                                   ('OLD_VALUE', 'value1'),
-                                   ('FINAL_VALUE', 'value2'),
-                                   ('DATE', '02/01/2020'),
-                                   ('TABLE', ' table1'),
-                                   ('COLUMN', ' column1')]),
-                      OrderedDict([('RECORD', '2'),
-                                   ('ID', ' id1'),
-                                   ('OLD_VALUE', 'value2'),
-                                   ('FINAL_VALUE', 'value3'),
-                                   ('DATE', '02/02/2020'),
-                                   ('TABLE', ' table1'),
-                                   ('COLUMN', ' column1')]),
-                      OrderedDict([('RECORD', '3'),
-                                   ('ID', ' id1'),
-                                   ('OLD_VALUE', 'value1'),
-                                   ('FINAL_VALUE', 'value1'),
-                                   ('DATE', '02/03/2020'),
-                                   ('TABLE', ' table1'),
-                                   ('COLUMN', ' column1'),
-                                   ('ORIGINAL_DATE', '02/01/2020')])],
-             ' id2': [OrderedDict([('RECORD', '4'),
-                                   ('ID', ' id2'),
-                                   ('OLD_VALUE', 'value4'),
-                                   ('FINAL_VALUE', 'value5'),
-                                   ('DATE', '02/01/2020'),
-                                   ('TABLE', ' table1'),
-                                   ('COLUMN', ' column1')]),
-                      OrderedDict([('RECORD', '5'),
-                                   ('ID', ' id2'),
-                                   ('OLD_VALUE', 'value4'),
-                                   ('FINAL_VALUE', ''),
-                                   ('DATE', '02/03/2020'),
-                                   ('TABLE', ' table1'),
-                                   ('COLUMN', ' column1'),
-                                   ('ORIGINAL_DATE', '02/01/2020')])],
-             ' id3': [OrderedDict([('RECORD', '6'),
-                                   ('ID', ' id3'),
-                                   ('OLD_VALUE', 'value6'),
-                                   ('FINAL_VALUE', 'value7'),
-                                   ('DATE', '02/01/2020'),
-                                   ('TABLE', ' table1'),
-                                   ('COLUMN', ' column1')]),
-                      OrderedDict([('RECORD', '7'),
-                                   ('ID', ' id3'),
-                                   ('OLD_VALUE', 'value6'),
-                                   ('FINAL_VALUE', 'value9'),
-                                   ('DATE', '02/02/2020'),
-                                   ('TABLE', ' table1'),
-                                   ('COLUMN', ' column1'),
-                                   ('ORIGINAL_DATE', '02/01/2020')])],
-             ' id4': [OrderedDict([('RECORD', '8'),
-                                   ('ID', ' id4'),
-                                   ('OLD_VALUE', 'value10'),
-                                   ('FINAL_VALUE', 'value11'),
-                                   ('DATE', '02/01/2020'),
-                                   ('TABLE', ' table1'),
-                                   ('COLUMN', ' column1')]),
-                      OrderedDict([('RECORD', '9'),
-                                   ('ID', ' id4'),
-                                   ('OLD_VALUE', 'value10'),
-                                   ('FINAL_VALUE', 'value12'),
-                                   ('DATE', '02/02/2020'),
-                                   ('TABLE', ' table1'),
-                                   ('COLUMN', ' column1'),
-                                   ('ORIGINAL_DATE', '02/01/2020')])],
-             'id4': [OrderedDict([('RECORD', '10'),
-                                  ('ID', 'id4'),
-                                  ('OLD_VALUE', 'value12'),
-                                  ('FINAL_VALUE', 'value4'),
-                                  ('DATE', '02/03/2020'),
-                                  ('TABLE', ' table1'),
-                                  ('COLUMN', ' column1'),
-                                  ('ORIGINAL_DATE', '02/03/2020')])]})
-</pre>
 </div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">

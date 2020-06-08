@@ -1,0 +1,11 @@
+RECORD,ID,OLD_VALUE,FINAL_VALUE,DATE,TABLE,COLUMN
+1, id1,value1,value2,02/01/2020, table1, column1
+2, id1,value2,value3,02/02/2020, table1, column1
+3, id1,value3,value1,02/03/2020, table1, column1
+4, id2,value4,value5,02/01/2020, table1, column1
+5, id2,value5,,02/03/2020, table1, column1
+6, id3,value6,value7,02/01/2020, table1, column1
+7, id3,value8,value9,02/02/2020, table1, column1
+8, id4,value10,value11,02/01/2020, table1, column1
+9, id4,value11,value12,02/02/2020, table1, column1
+10,id4,value12,value4,02/03/2020, table1, column1

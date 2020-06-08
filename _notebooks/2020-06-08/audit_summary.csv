@@ -1,0 +1,6 @@
+ID,OLD_VALUE,ORIGINAL_DATE,FINAL_VALUE,DATE,TABLE,COLUMN,RECORD
+ id1,value1,02/01/2020,value1,02/03/2020, table1, column1,3
+ id2,value4,02/01/2020,,02/03/2020, table1, column1,5
+ id3,value6,02/01/2020,value9,02/02/2020, table1, column1,7
+ id4,value10,02/01/2020,value12,02/02/2020, table1, column1,9
+id4,value12,02/03/2020,value4,02/03/2020, table1, column1,10

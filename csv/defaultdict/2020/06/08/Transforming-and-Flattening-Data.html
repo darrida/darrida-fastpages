@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Tranforming and Flattening Data | fastpages</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Tranforming and Flattening Data" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A test post to try out fastpages" />
+<meta property="og:description" content="A test post to try out fastpages" />
+<link rel="canonical" href="/csv/defaultdict/2020/06/08/Transforming-and-Flattening-Data.html" />
+<meta property="og:url" content="/csv/defaultdict/2020/06/08/Transforming-and-Flattening-Data.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-08T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A test post to try out fastpages","@type":"BlogPosting","headline":"Tranforming and Flattening Data","dateModified":"2020-06-08T00:00:00-05:00","datePublished":"2020-06-08T00:00:00-05:00","url":"/csv/defaultdict/2020/06/08/Transforming-and-Flattening-Data.html","mainEntityOfPage":{"@type":"WebPage","@id":"/csv/defaultdict/2020/06/08/Transforming-and-Flattening-Data.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Tranforming and Flattening Data | fastpages</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Tranforming and Flattening Data" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A test post to try out fastpages" />
+<meta property="og:description" content="A test post to try out fastpages" />
+<link rel="canonical" href="/csv/defaultdict/2020/06/08/Transforming-and-Flattening-Data.html" />
+<meta property="og:url" content="/csv/defaultdict/2020/06/08/Transforming-and-Flattening-Data.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-08T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A test post to try out fastpages","@type":"BlogPosting","headline":"Tranforming and Flattening Data","dateModified":"2020-06-08T00:00:00-05:00","datePublished":"2020-06-08T00:00:00-05:00","url":"/csv/defaultdict/2020/06/08/Transforming-and-Flattening-Data.html","mainEntityOfPage":{"@type":"WebPage","@id":"/csv/defaultdict/2020/06/08/Transforming-and-Flattening-Data.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="fastpages" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">fastpages</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Tranforming and Flattening Data</h1><p class="page-description">A test post to try out fastpages</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-06-08T00:00:00-05:00" itemprop="datePublished">
+        Jun 8, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="//categories/#csv">csv</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="//categories/#defaultdict">defaultdict</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/darrida/darrida-fastpages/tree/master/_notebooks/2020-06-08-Transforming and Flattening Data.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/darrida/darrida-fastpages/master?filepath=_notebooks%2F2020-06-08-Transforming+and+Flattening+Data.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/darrida/darrida-fastpages/blob/master/_notebooks/2020-06-08-Transforming and Flattening Data.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#The-Situation">The Situation </a></li>
+<li class="toc-entry toc-h1"><a href="#The-Problem">The Problem </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Details">Details </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#The-Solution">The Solution </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-06-08-Transforming and Flattening Data.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-Situation">
+<a class="anchor" href="#The-Situation" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Situation<a class="anchor-link" href="#The-Situation"> </a>
+</h1>
+<p>A while back I had a the need to take what were essentially audit logs, where multiple records existed for each id, and flatten then into a single record for each id.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I pulled the data into python from a database as a list of over 100,000 tuples. Here is an example of the data I was looking at.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>csv
+(audit_record.csv)
+RECORD,ID,OLD_VALUE,FINAL_VALUE,DATE,TABLE,COLUMN
+1, id1, value1,  value2,  02/01/2020, table1, column1
+2, id1, value2,  value3,  02/02/2020, table1, column1
+3, id1, value3,  value1,  02/03/2020, table1, column1
+4, id2, value4,  value5,  02/01/2020, table1, column1
+5, id2, value5,  ,        02/03/2020, table1, column1
+6, id3, value6,  value7,  02/01/2020, table1, column1
+7, id3, value8,  value9,  02/02/2020, table1, column1
+8, id4, value10, value11, 02/01/2020, table1, column1
+9, id4, value11, value12, 02/02/2020, table1, column1
+10,id4, value12, value4,  02/03/2020, table1, column1</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-Problem">
+<a class="anchor" href="#The-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Problem<a class="anchor-link" href="#The-Problem"> </a>
+</h1>
+<p>This was an audit log for a series of undesired changes. Here is an example of the progression of these changes:</p>
+<ul>
+<li>02/01/2020: a large number of records were changed and iterated to the next highest available number</li>
+<li>02/02/2020: a similar number of records (but not all) were changed again, again iterating to the next available number</li>
+<li>02/03/2020: an additional event took place that resulted in many of the records being corrected (returning to their previous numbers), but some ended at yet another iteration higher, while still others ended up missing a value altogether.</li>
+</ul>
+<p>In the sample information above there are 4 different unintended transformations of data that occurred:</p>
+<p>id1: Example series of changes that ended back at the correct value:</p>
+
+<pre><code>csv
+02/01: value1  =&gt;  value2  |  02/02: value2  =&gt;  value3  |  02/03: value3  =&gt;  value1</code></pre>
+<p>id2: Example of series of changes that ended with a complete removal of the value:</p>
+
+<pre><code>csv
+02/01: value4  =&gt;  value5  |  02/02: No Changes  |  02/03: value5  =&gt;  null</code></pre>
+<p>id3: Example of series of changes that ended at a different number:</p>
+
+<pre><code>csv
+02/01: value6  =&gt;  value7  |  02/02: value7  =&gt;  value8  |  02/03: No Changes</code></pre>
+<p>id4: Example of series of changes that ended up a different id's value (data not only incorrect, but conflicting):</p>
+
+<pre><code>csv
+02/01: value10  =&gt;  value11  |  02/02: value11  =&gt;  value12  |  02/03: value12  =&gt;  value4</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Details">
+<a class="anchor" href="#Details" aria-hidden="true"><span class="octicon octicon-link"></span></a>Details<a class="anchor-link" href="#Details"> </a>
+</h2>
+<p><strong>In addition to the obvious differences between these 4 different changes, there are some that are harder to see:</strong></p>
+<ul>
+<li>Some id records went through 3 changes, others went through 2 (this one is not hard to see)</li>
+<li>The last change of some id records was on 02/02, while others' last change was on 02/03</li>
+</ul>
+<p><strong>Altogether, the different factors that need to be understood are the following:</strong></p>
+<ul>
+<li>Some records changed each of the 3 days, some only on 2</li>
+<li>Some of the records that only changed 2 times had their final changed on day 2, while others skipped day 2 and had their final change on day 3</li>
+<li>Some records eventually were self corrected to their original value</li>
+<li>Some records iterated 2 times and ended at a different number</li>
+<li>Some records eventually ended up with a final value of null</li>
+<li>Some records ended up at the original value of a different id</li>
+</ul>
+<p><strong>This example, as messy as it is, also is cleaner that the situation itself. The follow challenges existed:</strong></p>
+<ul>
+<li>There were some that only had 1 audit record where the original value was immediately replaced with a null</li>
+<li>The list of tuples was not sorted in any fashion</li>
+<li>The dates were actually spread over a period of 14 or 15 days, with the changes for a single record following anywhere in that time period -- not a clean 3 days like the example here.</li>
+</ul>
+<p><strong>The tuples that represent the audits for these changes are all over the place. In the end, what I wanted to see clearly what I was dealing with. In order to do that I needed to have a list of new records that would clearly show me the following for each id:</strong></p>
+<ul>
+<li>original value, and the date that value was lost</li>
+<li>final value, and the date that value was added</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-Solution">
+<a class="anchor" href="#The-Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Solution<a class="anchor-link" href="#The-Solution"> </a>
+</h1>
+<ul>
+<li>Gather the change associated with a single id together, identified by that id:</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">'2020-06-08/audit_record.csv'</span><span class="p">))</span>
+<span class="n">dict_by_user</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="n">dict_by_user</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">'ID'</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>The results in <code>dcit_by_user</code> are the following data structure (python dictionary)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">dict_by_user</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'id1'</span><span class="p">:</span> <span class="p">[[</span><span class="s1">'id1'</span><span class="p">,</span> <span class="s1">'value1'</span><span class="p">,</span> <span class="s1">'value2'</span><span class="p">,</span>  <span class="s1">'02/01/2020'</span><span class="p">,</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'id1'</span><span class="p">,</span> <span class="s1">'value2'</span><span class="p">,</span> <span class="s1">'value3'</span><span class="p">,</span>  <span class="s1">'02/02/2020'</span><span class="p">,</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'id1'</span><span class="p">,</span> <span class="s1">'value3'</span><span class="p">,</span> <span class="s1">'value1'</span><span class="p">,</span>  <span class="s1">'02/03/2020'</span><span class="p">,</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">]],</span>
+    <span class="s1">'id2'</span><span class="p">:</span> <span class="p">[[</span><span class="s1">'id2'</span><span class="p">,</span> <span class="s1">'value4'</span><span class="p">,</span> <span class="s1">'value5'</span><span class="p">,</span>  <span class="s1">'02/01/2020'</span><span class="p">,</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'id2'</span><span class="p">,</span> <span class="s1">'value5'</span><span class="p">,</span>       <span class="s1">''</span><span class="p">,</span>  <span class="s1">'02/03/2020,'</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">]],</span>
+    <span class="s1">'id3'</span><span class="p">:</span> <span class="p">[[</span><span class="s1">'id3'</span><span class="p">,</span> <span class="s1">'value6'</span><span class="p">,</span> <span class="s1">'value7'</span><span class="p">,</span>  <span class="s1">'02/01/2020'</span><span class="p">,</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'id3'</span><span class="p">,</span> <span class="s1">'value8'</span><span class="p">,</span> <span class="s1">'value9'</span><span class="p">,</span>  <span class="s1">'02/02/2020'</span><span class="p">,</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">]],</span>
+    <span class="s1">'id4'</span><span class="p">:</span> <span class="p">[[</span><span class="s1">'id4'</span><span class="p">,</span> <span class="s1">'value10'</span><span class="p">,</span><span class="s1">'value11'</span><span class="p">,</span> <span class="s1">'02/01/2020'</span><span class="p">,</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'id4'</span><span class="p">,</span> <span class="s1">'value11'</span><span class="p">,</span><span class="s1">'value12'</span><span class="p">,</span> <span class="s1">'02/02/2020'</span><span class="p">,</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'id4'</span><span class="p">,</span> <span class="s1">'value12'</span><span class="p">,</span><span class="s1">'value4'</span><span class="p">,</span>  <span class="s1">'02/03/2020'</span><span class="p">,</span> <span class="s1">'table1'</span><span class="p">,</span> <span class="s1">'column1'</span><span class="p">]]</span>
+<span class="p">}</span>
+</pre></div>
+<ul>
+<li>
+<strong>NOTE:</strong> The actual end result of a defaultdict. The more accurate representation of what the data looks like can be seen by expanding the result right below here.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">dict_by_user</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>defaultdict(&lt;class 'list'&gt;,
+            {' id1': [OrderedDict([('RECORD', '1'),
+                                   ('ID', ' id1'),
+                                   ('OLD_VALUE', 'value1'),
+                                   ('FINAL_VALUE', 'value2'),
+                                   ('DATE', '02/01/2020'),
+                                   ('TABLE', ' table1'),
+                                   ('COLUMN', ' column1')]),
+                      OrderedDict([('RECORD', '2'),
+                                   ('ID', ' id1'),
+                                   ('OLD_VALUE', 'value2'),
+                                   ('FINAL_VALUE', 'value3'),
+                                   ('DATE', '02/02/2020'),
+                                   ('TABLE', ' table1'),
+                                   ('COLUMN', ' column1')]),
+                      OrderedDict([('RECORD', '3'),
+                                   ('ID', ' id1'),
+                                   ('OLD_VALUE', 'value1'),
+                                   ('FINAL_VALUE', 'value1'),
+                                   ('DATE', '02/03/2020'),
+                                   ('TABLE', ' table1'),
+                                   ('COLUMN', ' column1'),
+                                   ('ORIGINAL_DATE', '02/01/2020')])],
+             ' id2': [OrderedDict([('RECORD', '4'),
+                                   ('ID', ' id2'),
+                                   ('OLD_VALUE', 'value4'),
+                                   ('FINAL_VALUE', 'value5'),
+                                   ('DATE', '02/01/2020'),
+                                   ('TABLE', ' table1'),
+                                   ('COLUMN', ' column1')]),
+                      OrderedDict([('RECORD', '5'),
+                                   ('ID', ' id2'),
+                                   ('OLD_VALUE', 'value4'),
+                                   ('FINAL_VALUE', ''),
+                                   ('DATE', '02/03/2020'),
+                                   ('TABLE', ' table1'),
+                                   ('COLUMN', ' column1'),
+                                   ('ORIGINAL_DATE', '02/01/2020')])],
+             ' id3': [OrderedDict([('RECORD', '6'),
+                                   ('ID', ' id3'),
+                                   ('OLD_VALUE', 'value6'),
+                                   ('FINAL_VALUE', 'value7'),
+                                   ('DATE', '02/01/2020'),
+                                   ('TABLE', ' table1'),
+                                   ('COLUMN', ' column1')]),
+                      OrderedDict([('RECORD', '7'),
+                                   ('ID', ' id3'),
+                                   ('OLD_VALUE', 'value6'),
+                                   ('FINAL_VALUE', 'value9'),
+                                   ('DATE', '02/02/2020'),
+                                   ('TABLE', ' table1'),
+                                   ('COLUMN', ' column1'),
+                                   ('ORIGINAL_DATE', '02/01/2020')])],
+             ' id4': [OrderedDict([('RECORD', '8'),
+                                   ('ID', ' id4'),
+                                   ('OLD_VALUE', 'value10'),
+                                   ('FINAL_VALUE', 'value11'),
+                                   ('DATE', '02/01/2020'),
+                                   ('TABLE', ' table1'),
+                                   ('COLUMN', ' column1')]),
+                      OrderedDict([('RECORD', '9'),
+                                   ('ID', ' id4'),
+                                   ('OLD_VALUE', 'value10'),
+                                   ('FINAL_VALUE', 'value12'),
+                                   ('DATE', '02/02/2020'),
+                                   ('TABLE', ' table1'),
+                                   ('COLUMN', ' column1'),
+                                   ('ORIGINAL_DATE', '02/01/2020')])],
+             'id4': [OrderedDict([('RECORD', '10'),
+                                  ('ID', 'id4'),
+                                  ('OLD_VALUE', 'value12'),
+                                  ('FINAL_VALUE', 'value4'),
+                                  ('DATE', '02/03/2020'),
+                                  ('TABLE', ' table1'),
+                                  ('COLUMN', ' column1'),
+                                  ('ORIGINAL_DATE', '02/03/2020')])]})
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<code>dict_by_user</code> is then passed into the next section:</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">audit_summary_l</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dict_by_user</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">dict_by_user</span><span class="p">:</span>
+        <span class="n">temp_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="nb">max</span> <span class="o">=</span> <span class="s1">'0'</span>
+        <span class="nb">min</span> <span class="o">=</span> <span class="s1">'99/99/9999'</span>
+        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">dict_by_user</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">'DATE'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nb">max</span><span class="p">:</span>
+                <span class="nb">max</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s1">'DATE'</span><span class="p">]</span>
+                <span class="n">last</span> <span class="o">=</span> <span class="n">record</span>
+            <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">'DATE'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nb">min</span><span class="p">:</span>
+                <span class="nb">min</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s1">'DATE'</span><span class="p">]</span>
+                <span class="n">first</span> <span class="o">=</span> <span class="n">record</span>
+        <span class="n">temp_dict</span> <span class="o">=</span> <span class="n">last</span>
+        <span class="n">temp_dict</span><span class="p">[</span><span class="s1">'OLD_VALUE'</span><span class="p">]</span> <span class="o">=</span> <span class="n">first</span><span class="p">[</span><span class="s1">'OLD_VALUE'</span><span class="p">]</span>
+        <span class="n">temp_dict</span><span class="p">[</span><span class="s1">'ORIGINAL_DATE'</span><span class="p">]</span> <span class="o">=</span> <span class="n">first</span><span class="p">[</span><span class="s1">'DATE'</span><span class="p">]</span>
+        <span class="n">audit_summary_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_dict</span><span class="p">)</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'ID'</span><span class="p">,</span><span class="s1">'OLD_VALUE'</span><span class="p">,</span><span class="s1">'ORIGINAL_DATE'</span><span class="p">,</span><span class="s1">'FINAL_VALUE'</span><span class="p">,</span>
+           <span class="s1">'DATE'</span><span class="p">,</span><span class="s1">'TABLE'</span><span class="p">,</span><span class="s1">'COLUMN'</span><span class="p">,</span><span class="s1">'RECORD'</span><span class="p">]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'2020-06-08/audit_summary.csv'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_file</span><span class="p">:</span>
+    <span class="n">dict_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">lineterminator</span><span class="o">=</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">dict_writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">audit_summary_l</span><span class="p">:</span>
+        <span class="n">dict_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>This results in the following csv data:</li>
+</ul>
+
+<pre><code>csv
+ID,OLD_VALUE,ORIGINAL_DATE,FINAL_VALUE,DATE,TABLE,COLUMN,RECORD
+id1, value1,  02/01/2020, value1, 02/03/2020, table1,column1, 3
+id2, value4,  02/01/2020,       , 02/03/2020, table1,column1, 5
+id3, value6,  02/01/2020, value9, 02/02/2020, table1,column1, 7
+id4, value10, 02/01/2020, value4, 02/03/2020,table 1,column1, 10</code></pre>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="darrida/darrida-fastpages"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/csv/defaultdict/2020/06/08/Transforming-and-Flattening-Data.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

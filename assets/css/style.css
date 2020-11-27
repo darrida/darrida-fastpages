@@ -427,7 +427,7 @@ table td { text-overflow: ellipsis; overflow: hidden; max-width: 15em; }
 
 .output_text.output_execute_result pre { white-space: pre-wrap; }
 
-@media only screen and (max-width: 900px) { /* for mobile phone and tablet devices */
+@media only screen and (max-width: 1100px) { /* for mobile phone and tablet devices */
   .output_wrapper { overflow: scroll; } }
 
 /*-----------------------------------*/

@@ -9,13 +9,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Personal notes for different methods to print plain text tables in Python." />
 <meta property="og:description" content="Personal notes for different methods to print plain text tables in Python." />
-<link rel="canonical" href="https://darrida.com/csv/defaultdict/2020/11/23/idh_region_8.html" />
-<meta property="og:url" content="https://darrida.com/csv/defaultdict/2020/11/23/idh_region_8.html" />
+<link rel="canonical" href="https://darrida.com/general/2020/11/23/idh_region_8.html" />
+<meta property="og:url" content="https://darrida.com/general/2020/11/23/idh_region_8.html" />
 <meta property="og:site_name" content="Darrida" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-11-23T00:00:00-06:00" />
 <script type="application/ld+json">
-{"headline":"Print Simple Tables","description":"Personal notes for different methods to print plain text tables in Python.","datePublished":"2020-11-23T00:00:00-06:00","dateModified":"2020-11-23T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://darrida.com/csv/defaultdict/2020/11/23/idh_region_8.html"},"url":"https://darrida.com/csv/defaultdict/2020/11/23/idh_region_8.html","@context":"https://schema.org"}</script>
+{"headline":"Print Simple Tables","description":"Personal notes for different methods to print plain text tables in Python.","datePublished":"2020-11-23T00:00:00-06:00","dateModified":"2020-11-23T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://darrida.com/general/2020/11/23/idh_region_8.html"},"url":"https://darrida.com/general/2020/11/23/idh_region_8.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://darrida.com/feed.xml" title="Darrida" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Print Simple Tables | Darrida</title>
@@ -24,13 +24,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Personal notes for different methods to print plain text tables in Python." />
 <meta property="og:description" content="Personal notes for different methods to print plain text tables in Python." />
-<link rel="canonical" href="https://darrida.com/csv/defaultdict/2020/11/23/idh_region_8.html" />
-<meta property="og:url" content="https://darrida.com/csv/defaultdict/2020/11/23/idh_region_8.html" />
+<link rel="canonical" href="https://darrida.com/general/2020/11/23/idh_region_8.html" />
+<meta property="og:url" content="https://darrida.com/general/2020/11/23/idh_region_8.html" />
 <meta property="og:site_name" content="Darrida" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-11-23T00:00:00-06:00" />
 <script type="application/ld+json">
-{"headline":"Print Simple Tables","description":"Personal notes for different methods to print plain text tables in Python.","datePublished":"2020-11-23T00:00:00-06:00","dateModified":"2020-11-23T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://darrida.com/csv/defaultdict/2020/11/23/idh_region_8.html"},"url":"https://darrida.com/csv/defaultdict/2020/11/23/idh_region_8.html","@context":"https://schema.org"}</script>
+{"headline":"Print Simple Tables","description":"Personal notes for different methods to print plain text tables in Python.","datePublished":"2020-11-23T00:00:00-06:00","dateModified":"2020-11-23T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://darrida.com/general/2020/11/23/idh_region_8.html"},"url":"https://darrida.com/general/2020/11/23/idh_region_8.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -98,10 +98,7 @@ window.onload = wrap_img;
     
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
-        <a class="category-tags-link" href="/categories/#csv">csv</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/categories/#defaultdict">defaultdict</a>
+        <a class="category-tags-link" href="/categories/#general">general</a>
         
       
       </p>
@@ -133,11 +130,22 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#Basic-Table-w/-Manual-Column-Size-Control">Basic Table w/ Manual Column Size Control </a></li>
-<li class="toc-entry toc-h2"><a href="#Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)">Basic Table with Cleaned Up Data (and also w/ Manual Column Size Control) </a></li>
-<li class="toc-entry toc-h2"><a href="#Table-Built-with-tabulate">Table Built with tabulate </a></li>
-<li class="toc-entry toc-h2"><a href="#Table-Built-With-Pandas-and-tabulate">Table Built With Pandas and tabulate </a></li>
-<li class="toc-entry toc-h2"><a href="#Same-Pandas-Data-Visualized">Same Pandas Data Visualized </a></li>
+<li class="toc-entry toc-h2"><a href="#Manually-Created-Tables">Manually Created Tables </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Basic-Table-w/-Manual-Column-Size-Control">Basic Table w/ Manual Column Size Control </a></li>
+<li class="toc-entry toc-h3"><a href="#Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)">Basic Table with Cleaned Up Data (and also w/ Manual Column Size Control) </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Tables-Created-with-tabulate">Tables Created with tabulate </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Regular-tabulate-table">Regular tabulate table </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Pandas-tabulate-table">Pandas tabulate table </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Same-Pandas-Data-Visualized">Same Pandas Data Visualized </a></li>
+</ul>
+</li>
 </ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
@@ -151,36 +159,6 @@ window.onload = wrap_img;
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<details class="description">
-      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
-        <p></p>
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
-
-<span class="c1"># PyPI</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> <span class="k">as</span> <span class="n">BS</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="c1"># Standard</span>
-<span class="kn">import</span> <span class="nn">pprint</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">re</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-    </details>
 </div>
     
 
@@ -258,9 +236,18 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Basic-Table-w/-Manual-Column-Size-Control">
-<a class="anchor" href="#Basic-Table-w/-Manual-Column-Size-Control" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Table w/ Manual Column Size Control<a class="anchor-link" href="#Basic-Table-w/-Manual-Column-Size-Control"> </a>
+<h2 id="Manually-Created-Tables">
+<a class="anchor" href="#Manually-Created-Tables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manually Created Tables<a class="anchor-link" href="#Manually-Created-Tables"> </a>
 </h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Basic-Table-w/-Manual-Column-Size-Control">
+<a class="anchor" href="#Basic-Table-w/-Manual-Column-Size-Control" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Table w/ Manual Column Size Control<a class="anchor-link" href="#Basic-Table-w/-Manual-Column-Size-Control"> </a>
+</h3>
 <ul>
 <li>The sample data is Covid-19 region 8 information pulled from the Illinois Department of Public Health.<ul>
 <li>More data than is needed comes with this HTTP request.</li>
@@ -409,9 +396,9 @@ SINGLE SAMPLE
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)">
+<h3 id="Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)">
 <a class="anchor" href="#Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Table with Cleaned Up Data (and also w/ Manual Column Size Control)<a class="anchor-link" href="#Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)"> </a>
-</h2>
+</h3>
 </div>
 </div>
 </div>
@@ -557,8 +544,8 @@ SINGLE SAMPLE
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Table-Built-with-tabulate">
-<a class="anchor" href="#Table-Built-with-tabulate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table Built with tabulate<a class="anchor-link" href="#Table-Built-with-tabulate"> </a>
+<h2 id="Tables-Created-with-tabulate">
+<a class="anchor" href="#Tables-Created-with-tabulate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tables Created with <strong>tabulate</strong><a class="anchor-link" href="#Tables-Created-with-tabulate"> </a>
 </h2>
 </div>
 </div>
@@ -566,8 +553,17 @@ SINGLE SAMPLE
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Table-Built-With-Pandas-and-tabulate">
-<a class="anchor" href="#Table-Built-With-Pandas-and-tabulate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table Built With Pandas and tabulate<a class="anchor-link" href="#Table-Built-With-Pandas-and-tabulate"> </a>
+<h3 id="Regular-tabulate-table">
+<a class="anchor" href="#Regular-tabulate-table" aria-hidden="true"><span class="octicon octicon-link"></span></a>Regular tabulate table<a class="anchor-link" href="#Regular-tabulate-table"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pandas-tabulate-table">
+<a class="anchor" href="#Pandas-tabulate-table" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pandas tabulate table<a class="anchor-link" href="#Pandas-tabulate-table"> </a>
 </h2>
 </div>
 </div>
@@ -729,9 +725,9 @@ SINGLE SAMPLE
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Same-Pandas-Data-Visualized">
+<h4 id="Same-Pandas-Data-Visualized">
 <a class="anchor" href="#Same-Pandas-Data-Visualized" aria-hidden="true"><span class="octicon octicon-link"></span></a>Same Pandas Data Visualized<a class="anchor-link" href="#Same-Pandas-Data-Visualized"> </a>
-</h2>
+</h4>
 </div>
 </div>
 </div>
@@ -802,7 +798,7 @@ SINGLE SAMPLE
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/csv/defaultdict/2020/11/23/idh_region_8.html" hidden></a>
+</script><a class="u-url" href="/general/2020/11/23/idh_region_8.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">

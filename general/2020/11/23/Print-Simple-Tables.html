@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Print Simple Tables | Darrida</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Print Simple Tables" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Personal notes for different methods to print plain text tables in Python." />
+<meta property="og:description" content="Personal notes for different methods to print plain text tables in Python." />
+<link rel="canonical" href="https://darrida.com/general/2020/11/23/Print-Simple-Tables.html" />
+<meta property="og:url" content="https://darrida.com/general/2020/11/23/Print-Simple-Tables.html" />
+<meta property="og:site_name" content="Darrida" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-23T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"Print Simple Tables","description":"Personal notes for different methods to print plain text tables in Python.","datePublished":"2020-11-23T00:00:00-06:00","dateModified":"2020-11-23T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://darrida.com/general/2020/11/23/Print-Simple-Tables.html"},"url":"https://darrida.com/general/2020/11/23/Print-Simple-Tables.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://darrida.com/feed.xml" title="Darrida" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Print Simple Tables | Darrida</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Print Simple Tables" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Personal notes for different methods to print plain text tables in Python." />
+<meta property="og:description" content="Personal notes for different methods to print plain text tables in Python." />
+<link rel="canonical" href="https://darrida.com/general/2020/11/23/Print-Simple-Tables.html" />
+<meta property="og:url" content="https://darrida.com/general/2020/11/23/Print-Simple-Tables.html" />
+<meta property="og:site_name" content="Darrida" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-23T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"Print Simple Tables","description":"Personal notes for different methods to print plain text tables in Python.","datePublished":"2020-11-23T00:00:00-06:00","dateModified":"2020-11-23T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://darrida.com/general/2020/11/23/Print-Simple-Tables.html"},"url":"https://darrida.com/general/2020/11/23/Print-Simple-Tables.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://darrida.com/feed.xml" title="Darrida" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Darrida</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Print Simple Tables</h1><p class="page-description">Personal notes for different methods to print plain text tables in Python.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-23T00:00:00-06:00" itemprop="datePublished">
+        Nov 23, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      32 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#general">general</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/darrida/darrida-fastpages/tree/master/_notebooks/2020-11-23-Print Simple Tables.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/darrida/darrida-fastpages/master?filepath=_notebooks%2F2020-11-23-Print+Simple+Tables.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/darrida/darrida-fastpages/blob/master/_notebooks/2020-11-23-Print Simple Tables.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Manually-Created-Tables">Manually Created Tables </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Basic-Table-w/-Manual-Column-Size-Control">Basic Table w/ Manual Column Size Control </a></li>
+<li class="toc-entry toc-h3"><a href="#Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)">Basic Table with Cleaned Up Data (and also w/ Manual Column Size Control) </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Tables-Created-with-tabulate">Tables Created with tabulate </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Regular-tabulate-table">Regular tabulate table </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Pandas-tabulate-table">Pandas tabulate table </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Aside:-Same-Pandas-Data-Visualized">Aside: Same Pandas Data Visualized </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-11-23-Print Simple Tables.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="c1"># SUPPORTING FUNCTIONS</span>
+<span class="k">def</span> <span class="nf">build_title</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">'-------------------------------</span><span class="se">\n</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="se">\n</span><span class="s1">-------------------------------</span><span class="se">\n</span><span class="s1">'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="n">query_url</span> <span class="o">=</span> <span class="s1">'https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetResurgenceData?regionID=8&amp;daysIncluded=7'</span> <span class="c1">#+ selectedRegion + '&amp;daysIncluded=' + chartRange</span>
+
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">'CLI ADMISSIONS'</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'CLIAdmissions'</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">'COUNTRY TEST POSITIVITY REPORTS'</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'CountyTestPositivityReports'</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">'HOSPITAL AVAILABILITY'</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'HospitalAvailability'</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">'HOSPITAL BEDS IN USE AVG'</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'HospitalBedsInUseAvg'</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">'TEST POSITIVITY'</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'TestPositivity'</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">'LAST UPDATED DATE'</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'lastUpdatedDate'</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">'REGION METRICS'</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'regionMetrics'</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-------------------------------
+CLI ADMISSIONS
+-------------------------------
+
+[{'CLIAdmissionsRA': 58.0,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-17T00:00:00'},
+ {'CLIAdmissionsRA': 60.0,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-18T00:00:00'},
+ {'CLIAdmissionsRA': 56.0,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-19T00:00:00'},
+ {'CLIAdmissionsRA': 58.0,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-20T00:00:00'},
+ {'CLIAdmissionsRA': 57.0,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-21T00:00:00'},
+ {'CLIAdmissionsRA': 54.0,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-22T00:00:00'},
+ {'CLIAdmissionsRA': 52.0,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-23T00:00:00'},
+ {'CLIAdmissionsRA': 50.0,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-24T00:00:00'}]
+-------------------------------
+COUNTRY TEST POSITIVITY REPORTS
+-------------------------------
+
+[{'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 695,
+                              'positivityRollingAvg': 13.5,
+                              'regionID': 8,
+                              'totalTest': 5626},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 458,
+                              'positivityRollingAvg': 16.7,
+                              'regionID': 8,
+                              'totalTest': 3236}],
+  'reportDate': '2020-11-17T00:00:00'},
+ {'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 817,
+                              'positivityRollingAvg': 13.5,
+                              'regionID': 8,
+                              'totalTest': 6029},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 639,
+                              'positivityRollingAvg': 17.1,
+                              'regionID': 8,
+                              'totalTest': 3143}],
+  'reportDate': '2020-11-18T00:00:00'},
+ {'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 747,
+                              'positivityRollingAvg': 13.5,
+                              'regionID': 8,
+                              'totalTest': 5344},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 550,
+                              'positivityRollingAvg': 16.4,
+                              'regionID': 8,
+                              'totalTest': 3792}],
+  'reportDate': '2020-11-19T00:00:00'},
+ {'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 739,
+                              'positivityRollingAvg': 13.2,
+                              'regionID': 8,
+                              'totalTest': 5755},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 706,
+                              'positivityRollingAvg': 16.7,
+                              'regionID': 8,
+                              'totalTest': 3646}],
+  'reportDate': '2020-11-20T00:00:00'},
+ {'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 629,
+                              'positivityRollingAvg': 13.1,
+                              'regionID': 8,
+                              'totalTest': 4822},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 486,
+                              'positivityRollingAvg': 17.0,
+                              'regionID': 8,
+                              'totalTest': 2367}],
+  'reportDate': '2020-11-21T00:00:00'},
+ {'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 789,
+                              'positivityRollingAvg': 13.0,
+                              'regionID': 8,
+                              'totalTest': 6494},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 477,
+                              'positivityRollingAvg': 16.8,
+                              'regionID': 8,
+                              'totalTest': 3126}],
+  'reportDate': '2020-11-22T00:00:00'},
+ {'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 613,
+                              'positivityRollingAvg': 12.3,
+                              'regionID': 8,
+                              'totalTest': 6652},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 323,
+                              'positivityRollingAvg': 16.4,
+                              'regionID': 8,
+                              'totalTest': 2838}],
+  'reportDate': '2020-11-23T00:00:00'},
+ {'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 777,
+                              'positivityRollingAvg': 12.3,
+                              'regionID': 8,
+                              'totalTest': 6411},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 517,
+                              'positivityRollingAvg': 16.3,
+                              'regionID': 8,
+                              'totalTest': 3790}],
+  'reportDate': '2020-11-24T00:00:00'}]
+-------------------------------
+HOSPITAL AVAILABILITY
+-------------------------------
+
+[{'AverageICUAvailPct': 0.263681592,
+  'AverageMedSurgAvailPct': 0.185337874,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-19T00:00:00'},
+ {'AverageICUAvailPct': 0.226988382,
+  'AverageMedSurgAvailPct': 0.1687523,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-20T00:00:00'},
+ {'AverageICUAvailPct': 0.184731385,
+  'AverageMedSurgAvailPct': 0.158102766,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-21T00:00:00'},
+ {'AverageICUAvailPct': 0.193577981,
+  'AverageMedSurgAvailPct': 0.170983483,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-22T00:00:00'},
+ {'AverageICUAvailPct': 0.19266055,
+  'AverageMedSurgAvailPct': 0.166102968,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-23T00:00:00'},
+ {'AverageICUAvailPct': 0.191328934,
+  'AverageMedSurgAvailPct': 0.166729678,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-24T00:00:00'},
+ {'AverageICUAvailPct': 0.193798449,
+  'AverageMedSurgAvailPct': 0.170912547,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-25T00:00:00'},
+ {'AverageICUAvailPct': 0.200581395,
+  'AverageMedSurgAvailPct': 0.200609059,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-26T00:00:00'}]
+-------------------------------
+HOSPITAL BEDS IN USE AVG
+-------------------------------
+
+[{'COVIDHospitalBedsInUseAvg': 700,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-19T00:00:00'},
+ {'COVIDHospitalBedsInUseAvg': 706,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-20T00:00:00'},
+ {'COVIDHospitalBedsInUseAvg': 711,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-21T00:00:00'},
+ {'COVIDHospitalBedsInUseAvg': 716,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-22T00:00:00'},
+ {'COVIDHospitalBedsInUseAvg': 713,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-23T00:00:00'},
+ {'COVIDHospitalBedsInUseAvg': 712,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-24T00:00:00'},
+ {'COVIDHospitalBedsInUseAvg': 706,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-25T00:00:00'},
+ {'COVIDHospitalBedsInUseAvg': 691,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-26T00:00:00'}]
+-------------------------------
+TEST POSITIVITY
+-------------------------------
+
+[{'positiveTests': 1153,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-17T00:00:00',
+  'testPositivityRollingAvg': 14.6,
+  'totalTests': 8862},
+ {'positiveTests': 1456,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-18T00:00:00',
+  'testPositivityRollingAvg': 14.8,
+  'totalTests': 9172},
+ {'positiveTests': 1297,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-19T00:00:00',
+  'testPositivityRollingAvg': 14.5,
+  'totalTests': 9136},
+ {'positiveTests': 1445,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-20T00:00:00',
+  'testPositivityRollingAvg': 14.5,
+  'totalTests': 9401},
+ {'positiveTests': 1115,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-21T00:00:00',
+  'testPositivityRollingAvg': 14.5,
+  'totalTests': 7189},
+ {'positiveTests': 1266,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-22T00:00:00',
+  'testPositivityRollingAvg': 14.4,
+  'totalTests': 9620},
+ {'positiveTests': 936,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-23T00:00:00',
+  'testPositivityRollingAvg': 13.8,
+  'totalTests': 9490},
+ {'positiveTests': 1294,
+  'regionDescription': 'West Suburban',
+  'regionID': 8,
+  'reportDate': '2020-11-24T00:00:00',
+  'testPositivityRollingAvg': 13.7,
+  'totalTests': 10201}]
+-------------------------------
+LAST UPDATED DATE
+-------------------------------
+
+{'day': 27, 'month': 11, 'year': 2020}
+-------------------------------
+REGION METRICS
+-------------------------------
+
+[{'CLIAdmissions_RollingAvg': 56.0,
+  'COVIDHospitalBedsInUse': 700.0,
+  'ICUAvailPct_Avg': '26.37 %',
+  'MedSurgAvailPct_Avg': '18.53 %',
+  'PositiveTests': 1297,
+  'RegionDescription': 'West Suburban',
+  'RegionID': 8,
+  'ReportDate': '2020-11-19T00:00:00',
+  'TestPositivity_RollingAvg': 14.5,
+  'TotalTests': 9136},
+ {'CLIAdmissions_RollingAvg': 58.0,
+  'COVIDHospitalBedsInUse': 706.0,
+  'ICUAvailPct_Avg': '22.70 %',
+  'MedSurgAvailPct_Avg': '16.88 %',
+  'PositiveTests': 1445,
+  'RegionDescription': 'West Suburban',
+  'RegionID': 8,
+  'ReportDate': '2020-11-20T00:00:00',
+  'TestPositivity_RollingAvg': 14.5,
+  'TotalTests': 9401},
+ {'CLIAdmissions_RollingAvg': 57.0,
+  'COVIDHospitalBedsInUse': 711.0,
+  'ICUAvailPct_Avg': '18.47 %',
+  'MedSurgAvailPct_Avg': '15.81 %',
+  'PositiveTests': 1115,
+  'RegionDescription': 'West Suburban',
+  'RegionID': 8,
+  'ReportDate': '2020-11-21T00:00:00',
+  'TestPositivity_RollingAvg': 14.5,
+  'TotalTests': 7189},
+ {'CLIAdmissions_RollingAvg': 54.0,
+  'COVIDHospitalBedsInUse': 716.0,
+  'ICUAvailPct_Avg': '19.36 %',
+  'MedSurgAvailPct_Avg': '17.10 %',
+  'PositiveTests': 1266,
+  'RegionDescription': 'West Suburban',
+  'RegionID': 8,
+  'ReportDate': '2020-11-22T00:00:00',
+  'TestPositivity_RollingAvg': 14.4,
+  'TotalTests': 9620},
+ {'CLIAdmissions_RollingAvg': 52.0,
+  'COVIDHospitalBedsInUse': 713.0,
+  'ICUAvailPct_Avg': '19.27 %',
+  'MedSurgAvailPct_Avg': '16.61 %',
+  'PositiveTests': 936,
+  'RegionDescription': 'West Suburban',
+  'RegionID': 8,
+  'ReportDate': '2020-11-23T00:00:00',
+  'TestPositivity_RollingAvg': 13.8,
+  'TotalTests': 9490},
+ {'CLIAdmissions_RollingAvg': 50.0,
+  'COVIDHospitalBedsInUse': 712.0,
+  'ICUAvailPct_Avg': '19.13 %',
+  'MedSurgAvailPct_Avg': '16.67 %',
+  'PositiveTests': 1294,
+  'RegionDescription': 'West Suburban',
+  'RegionID': 8,
+  'ReportDate': '2020-11-24T00:00:00',
+  'TestPositivity_RollingAvg': 13.7,
+  'TotalTests': 10201}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Manually-Created-Tables">
+<a class="anchor" href="#Manually-Created-Tables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manually Created Tables<a class="anchor-link" href="#Manually-Created-Tables"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Basic-Table-w/-Manual-Column-Size-Control">
+<a class="anchor" href="#Basic-Table-w/-Manual-Column-Size-Control" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Table w/ Manual Column Size Control<a class="anchor-link" href="#Basic-Table-w/-Manual-Column-Size-Control"> </a>
+</h3>
+<ul>
+<li>The sample data is Covid-19 region 8 information pulled from the Illinois Department of Public Health.<ul>
+<li>More data than is needed comes with this HTTP request.</li>
+<li>Specific data used is for the County Test Positivity Reports.</li>
+</ul>
+</li>
+<li>Code description:<ul>
+<li>
+<strong>line 8:</strong> printout of sample json object to show what the raw data looks like</li>
+<li>
+<strong>line 11:</strong> Simplest form of creating a header: string printing of strings</li>
+<li>
+<strong>line 14:</strong> The json object, 'countyTestPositivities', under 'CountryTestPositivityReports' contains a list of json objects inside - one for each county. The nested for loop takes the first object, loops through the nested list, then moves onto the next object and nested list.</li>
+<li>
+<strong>lines 16-26:</strong> rudementry data clean up for the plain text table<ul>
+<li>This clean up involves both reformatting of data, but also ensuring that the cells in the table all line up.</li>
+<li>Example - Data Formatting: "date" - <code>counties['reportDate'][:10]</code> takes the long datetime string and moves all of the time characters. It does this by cutting out any characters between the 10th character ([9]) in the string. There are better ways to do this using the datetime library, but this works as well.</li>
+<li>Example - Table Formatting: "name"<ul>
+<li>We want the name column to always be 1 characters wide.</li>
+<li>The first step is the basic action of setting the name variable from the pulled data</li>
+<li>The second step is the following, in reverse order of the code in line 19:<ul>
+<li>(1) count (<code>len</code>) the number of characters in the name string</li>
+<li>(2) subtract that number from the desired column width, which is 10 in this case (if the name is "Kane", then that would be 10 - 4 = 6)</li>
+<li>(3) populate "name_fill" with a string of spaces the length of the result from the previous step (if the name is "Kane", then that would be a string of 6 spaces)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The column filler variable is setup for "name", "positive", "total", "daily_avg", and "seven_day_avg"</li>
+</ul>
+</li>
+<li>
+<strong>line 27:</strong> The content portion of the table is printed one line at a time using a combination of bars, spaces, and the pair of data variable and filler variable</li>
+<li>
+<strong>line 28:</strong> Closes the bottm of the table with another string to match the header</li>
+</ul>
+</li>
+<li>See the output further below for a visual of the raw data example, and the resulting plain text table</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">'COUNTY TEST POSITIVITY REPORTS'</span><span class="p">))</span>
+
+<span class="n">query_url</span> <span class="o">=</span> <span class="s1">'https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetResurgenceData?regionID=8&amp;daysIncluded=10'</span> <span class="c1">#+ selectedRegion + '&amp;daysIncluded=' + chartRange</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span>
+
+<span class="n">positivity_rates</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'CountyTestPositivityReports'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'SINGLE SAMPLE'</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">positivity_rates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'+-----------------------------------------------------------+'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'| DATE       |  NAME      | POS    | TOTAL  | AVG   | 7 DAY |'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'|-----------------------------------------------------------|'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">counties</span> <span class="ow">in</span> <span class="n">positivity_rates</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">counties</span><span class="p">[</span><span class="s1">'countyTestPositivities'</span><span class="p">]:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">counties</span><span class="p">[</span><span class="s1">'reportDate'</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s1">'CountyName'</span><span class="p">]</span>
+        <span class="n">name_fill</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">positive</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s1">'positive_test'</span><span class="p">]</span>
+        <span class="n">positive_fill</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">*</span><span class="p">(</span><span class="mi">6</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">positive</span><span class="p">)))</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s1">'totalTest'</span><span class="p">]</span>
+        <span class="n">total_fill</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">*</span><span class="p">(</span><span class="mi">6</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">total</span><span class="p">)))</span>
+        <span class="n">daily_avg</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">'positive_test'</span><span class="p">]</span><span class="o">/</span><span class="n">i</span><span class="p">[</span><span class="s1">'totalTest'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># positive tests / total tests * 100, then rounded to 1 decimal place</span>
+        <span class="n">daily_avg_fill</span> <span class="o">=</span> <span class="s1">' '</span> <span class="o">*</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">daily_avg</span><span class="p">)))</span>
+        <span class="n">seven_day_avg</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s1">'positivityRollingAvg'</span><span class="p">]</span>
+        <span class="n">seven_fill</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">seven_day_avg</span><span class="p">)))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'| </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">name</span><span class="si">}{</span><span class="n">name_fill</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">positive</span><span class="si">}{</span><span class="n">positive_fill</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">total</span><span class="si">}{</span><span class="n">total_fill</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">daily_avg</span><span class="si">}{</span><span class="n">daily_avg_fill</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">seven_day_avg</span><span class="si">}{</span><span class="n">seven_fill</span><span class="si">}</span><span class="s1"> |'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'+-----------------------------------------------------------+'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-4fe87ac59397&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>build_title<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">'COUNTY TEST POSITIVITY REPORTS'</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> 
+<span class="ansi-green-intense-fg ansi-bold">      3</span> query_url <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">'https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetResurgenceData?regionID=8&amp;daysIncluded=10'</span> <span class="ansi-red-fg">#+ selectedRegion + '&amp;daysIncluded=' + chartRange</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> page <span class="ansi-blue-fg">=</span> requests<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>query_url<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> 
+
+<span class="ansi-red-fg">NameError</span>: name 'build_title' is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)">
+<a class="anchor" href="#Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Table with Cleaned Up Data (and also w/ Manual Column Size Control)<a class="anchor-link" href="#Basic-Table-with-Cleaned-Up-Data-(and-also-w/-Manual-Column-Size-Control)"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+
+<span class="c1"># TABLE PARAMETERS</span>
+<span class="n">line_length</span> <span class="o">=</span> <span class="mi">59</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">'COUNTY TEST POSITIVITY REPORTS'</span><span class="p">))</span>
+
+<span class="n">query_url</span> <span class="o">=</span> <span class="s1">'https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetResurgenceData?regionID=8&amp;daysIncluded=20'</span> <span class="c1">#+ selectedRegion + '&amp;daysIncluded=' + chartRange</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span>
+
+<span class="n">positivity_rates</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'CountyTestPositivityReports'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'SINGLE SAMPLE'</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">positivity_rates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">behind</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">positivity_rates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">'reportDate'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S"</span><span class="p">)</span>
+<span class="n">behind_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'CURRENT DATE: </span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="si">}</span><span class="s1"> (Report is </span><span class="si">{</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">behind</span><span class="o">.</span><span class="n">date</span><span class="p">())</span><span class="o">.</span><span class="n">days</span><span class="si">}</span><span class="s1"> days *behind*)'</span>
+<span class="n">behind_fill</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">*</span><span class="p">(</span><span class="mi">57</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">behind_str</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'+</span><span class="si">{</span><span class="s2">"="</span><span class="o">*</span><span class="n">line_length</span><span class="si">}</span><span class="s1">+'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'| </span><span class="si">{</span><span class="n">behind_str</span><span class="si">}{</span><span class="n">behind_fill</span><span class="si">}</span><span class="s1"> |'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'|</span><span class="si">{</span><span class="s2">"="</span><span class="o">*</span><span class="n">line_length</span><span class="si">}</span><span class="s1">|'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'| NAME       | DATE       | POS    | TOTAL  | AVG   | 7 DAY |'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'|</span><span class="si">{</span><span class="s2">"-"</span><span class="o">*</span><span class="n">line_length</span><span class="si">}</span><span class="s1">|'</span><span class="p">)</span>
+<span class="n">number_of_counties</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">positivity_rates</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'countyTestPositivities'</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_counties</span><span class="p">):</span>
+    <span class="n">print_name</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">counties</span> <span class="ow">in</span> <span class="n">positivity_rates</span><span class="p">:</span>
+        <span class="n">county</span> <span class="o">=</span> <span class="n">counties</span><span class="p">[</span><span class="s1">'countyTestPositivities'</span><span class="p">][</span><span class="n">n</span><span class="p">]</span><span class="c1">#[n-1]</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">counties</span><span class="p">[</span><span class="s1">'reportDate'</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">county</span><span class="p">[</span><span class="s1">'CountyName'</span><span class="p">]</span> <span class="k">if</span> <span class="n">print_name</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="s1">''</span>
+        <span class="n">name_fill</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">positive</span> <span class="o">=</span> <span class="n">county</span><span class="p">[</span><span class="s1">'positive_test'</span><span class="p">]</span>
+        <span class="n">positive_fill</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">*</span><span class="p">(</span><span class="mi">6</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">positive</span><span class="p">)))</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">county</span><span class="p">[</span><span class="s1">'totalTest'</span><span class="p">]</span>
+        <span class="n">total_fill</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">*</span><span class="p">(</span><span class="mi">6</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">total</span><span class="p">)))</span>
+        <span class="n">daily_avg</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">county</span><span class="p">[</span><span class="s1">'positive_test'</span><span class="p">]</span><span class="o">/</span><span class="n">county</span><span class="p">[</span><span class="s1">'totalTest'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># positive tests / total tests * 100, then rounded to 1 decimal place</span>
+        <span class="n">daily_avg_fill</span> <span class="o">=</span> <span class="s1">' '</span> <span class="o">*</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">daily_avg</span><span class="p">)))</span>
+        <span class="n">seven_day_avg</span> <span class="o">=</span> <span class="n">county</span><span class="p">[</span><span class="s1">'positivityRollingAvg'</span><span class="p">]</span>
+        <span class="n">seven_fill</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">seven_day_avg</span><span class="p">)))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'| </span><span class="si">{</span><span class="n">name</span><span class="si">}{</span><span class="n">name_fill</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">positive</span><span class="si">}{</span><span class="n">positive_fill</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">total</span><span class="si">}{</span><span class="n">total_fill</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">daily_avg</span><span class="si">}{</span><span class="n">daily_avg_fill</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">seven_day_avg</span><span class="si">}{</span><span class="n">seven_fill</span><span class="si">}</span><span class="s1"> |'</span><span class="p">)</span>
+        <span class="n">print_name</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'+</span><span class="si">{</span><span class="s2">"-"</span><span class="o">*</span><span class="n">line_length</span><span class="si">}</span><span class="s1">+'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-------------------------------
+COUNTY TEST POSITIVITY REPORTS
+-------------------------------
+
+SINGLE SAMPLE
+{'countyTestPositivities': [{'CountyName': 'DuPage',
+                             'dailyPositivity': 0.0,
+                             'positive_test': 777,
+                             'positivityRollingAvg': 12.3,
+                             'regionID': 8,
+                             'totalTest': 6411},
+                            {'CountyName': 'Kane',
+                             'dailyPositivity': 0.0,
+                             'positive_test': 517,
+                             'positivityRollingAvg': 16.3,
+                             'regionID': 8,
+                             'totalTest': 3790}],
+ 'reportDate': '2020-11-24T00:00:00'}
+
++===========================================================+
+| CURRENT DATE: 2020-11-27 (Report is 3 days *behind*)      |
+|===========================================================|
+| NAME       | DATE       | POS    | TOTAL  | AVG   | 7 DAY |
+|-----------------------------------------------------------|
+| DuPage     | 2020-11-04 | 468    | 4335   | 10.8  | 11.7  |
+|            | 2020-11-05 | 573    | 4810   | 11.9  | 11.9  |
+|            | 2020-11-06 | 782    | 5917   | 13.2  | 12.4  |
+|            | 2020-11-07 | 792    | 5514   | 14.4  | 12.8  |
+|            | 2020-11-08 | 722    | 4514   | 16.0  | 13.2  |
+|            | 2020-11-09 | 830    | 5588   | 14.9  | 13.8  |
+|            | 2020-11-10 | 813    | 5433   | 15.0  | 13.8  |
+|            | 2020-11-11 | 709    | 5286   | 13.4  | 14.1  |
+|            | 2020-11-12 | 718    | 5126   | 14.0  | 14.4  |
+|            | 2020-11-13 | 904    | 6035   | 15.0  | 14.6  |
+|            | 2020-11-14 | 695    | 4973   | 14.0  | 14.6  |
+|            | 2020-11-15 | 699    | 5628   | 12.4  | 14.1  |
+|            | 2020-11-16 | 756    | 5619   | 13.5  | 13.9  |
+|            | 2020-11-17 | 695    | 5626   | 12.4  | 13.5  |
+|            | 2020-11-18 | 817    | 6029   | 13.6  | 13.5  |
+|            | 2020-11-19 | 747    | 5344   | 14.0  | 13.5  |
+|            | 2020-11-20 | 739    | 5755   | 12.8  | 13.2  |
+|            | 2020-11-21 | 629    | 4822   | 13.0  | 13.1  |
+|            | 2020-11-22 | 789    | 6494   | 12.1  | 13.0  |
+|            | 2020-11-23 | 613    | 6652   | 9.2   | 12.3  |
+|            | 2020-11-24 | 777    | 6411   | 12.1  | 12.3  |
++-----------------------------------------------------------+
+| Kane       | 2020-11-04 | 381    | 2401   | 15.9  | 15.0  |
+|            | 2020-11-05 | 474    | 2816   | 16.8  | 15.6  |
+|            | 2020-11-06 | 654    | 3895   | 16.8  | 16.0  |
+|            | 2020-11-07 | 588    | 2815   | 20.9  | 16.7  |
+|            | 2020-11-08 | 426    | 1981   | 21.5  | 17.3  |
+|            | 2020-11-09 | 507    | 3118   | 16.3  | 17.5  |
+|            | 2020-11-10 | 612    | 3456   | 17.7  | 17.8  |
+|            | 2020-11-11 | 566    | 3219   | 17.6  | 18.0  |
+|            | 2020-11-12 | 522    | 2714   | 19.2  | 18.3  |
+|            | 2020-11-13 | 593    | 3465   | 17.1  | 18.4  |
+|            | 2020-11-14 | 458    | 2570   | 17.8  | 18.0  |
+|            | 2020-11-15 | 457    | 2673   | 17.1  | 17.5  |
+|            | 2020-11-16 | 430    | 3034   | 14.2  | 17.2  |
+|            | 2020-11-17 | 458    | 3236   | 14.2  | 16.7  |
+|            | 2020-11-18 | 639    | 3143   | 20.3  | 17.1  |
+|            | 2020-11-19 | 550    | 3792   | 14.5  | 16.4  |
+|            | 2020-11-20 | 706    | 3646   | 19.4  | 16.7  |
+|            | 2020-11-21 | 486    | 2367   | 20.5  | 17.0  |
+|            | 2020-11-22 | 477    | 3126   | 15.3  | 16.8  |
+|            | 2020-11-23 | 323    | 2838   | 11.4  | 16.4  |
+|            | 2020-11-24 | 517    | 3790   | 13.6  | 16.3  |
++-----------------------------------------------------------+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tables-Created-with-tabulate">
+<a class="anchor" href="#Tables-Created-with-tabulate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tables Created with <strong>tabulate</strong><a class="anchor-link" href="#Tables-Created-with-tabulate"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Regular-tabulate-table">
+<a class="anchor" href="#Regular-tabulate-table" aria-hidden="true"><span class="octicon octicon-link"></span></a>Regular tabulate table<a class="anchor-link" href="#Regular-tabulate-table"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pandas-tabulate-table">
+<a class="anchor" href="#Pandas-tabulate-table" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pandas tabulate table<a class="anchor-link" href="#Pandas-tabulate-table"> </a>
+</h2>
+<ul>
+<li>tablefmt options: <code>plain</code>, <code>simple</code>, <code>github</code>, <code>grid</code>, <code>fancy_grid</code>, <code>pipe</code>, <code>orgtbl</code>, <code>jira</code>, <code>fpresto</code>, <code>pretty</code>, <code>psql</code>, <code>rst</code>, <code>mediawiki</code>, <code>moinmoin</code>, <code>youtrack</code>, <code>html</code>, <code>latex</code>, <code>latex_raw</code>, <code>latex_booktabs</code>, <code>textile</code>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">query_url</span> <span class="o">=</span> <span class="s1">'https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetResurgenceData?regionID=8&amp;daysIncluded=90'</span> <span class="c1"># max is 170 days #+ selectedRegion + '&amp;daysIncluded=' + chartRange</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span>
+
+<span class="n">positivity_rates</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'CountyTestPositivityReports'</span><span class="p">]</span>
+
+<span class="n">flattened_positivity_rates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">dates</span> <span class="ow">in</span> <span class="n">positivity_rates</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">county</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">[</span><span class="s1">'countyTestPositivities'</span><span class="p">]:</span>
+        <span class="n">county</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dates</span><span class="p">[</span><span class="s1">'reportDate'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S"</span><span class="p">)</span>
+        <span class="n">flattened_positivity_rates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">county</span><span class="p">)</span>
+
+<span class="n">county_test_pos_rates_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">flattened_positivity_rates</span><span class="p">)</span>
+<span class="n">county_test_pos_rates_df</span><span class="p">[</span><span class="s1">'daily_avg'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">county_test_pos_rates_df</span><span class="p">[</span><span class="s1">'positive_test'</span><span class="p">]</span> <span class="o">/</span> <span class="n">county_test_pos_rates_df</span><span class="p">[</span><span class="s1">'totalTest'</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">county_test_pos_rates_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">'CountyName'</span><span class="p">,</span> <span class="s1">'date'</span><span class="p">]),</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">'keys'</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">'psql'</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+-----+--------------+-------------+-----------------+------------------------+-------------------+------------+---------------------+-------------+
+|     | CountyName   |   totalTest |   positive_test |   positivityRollingAvg |   dailyPositivity |   regionID | date                |   daily_avg |
+|-----+--------------+-------------+-----------------+------------------------+-------------------+------------+---------------------+-------------|
+|   0 | DuPage       |        1687 |             101 |                    5.3 |                 0 |          8 | 2020-08-26 00:00:00 |     5.98696 |
+|   2 | DuPage       |        2534 |              96 |                    5.3 |                 0 |          8 | 2020-08-27 00:00:00 |     3.78848 |
+|   4 | DuPage       |        2706 |             149 |                    5.1 |                 0 |          8 | 2020-08-28 00:00:00 |     5.50628 |
+|   6 | DuPage       |        2037 |             132 |                    5.5 |                 0 |          8 | 2020-08-29 00:00:00 |     6.48012 |
+|   8 | DuPage       |        2120 |             110 |                    5.4 |                 0 |          8 | 2020-08-30 00:00:00 |     5.18868 |
+|  10 | DuPage       |        1281 |              75 |                    5.6 |                 0 |          8 | 2020-08-31 00:00:00 |     5.8548  |
+|  12 | DuPage       |        2017 |              96 |                    5.3 |                 0 |          8 | 2020-09-01 00:00:00 |     4.75954 |
+|  14 | DuPage       |        1297 |              72 |                    5.2 |                 0 |          8 | 2020-09-02 00:00:00 |     5.55127 |
+|  16 | DuPage       |        8193 |             307 |                    4.8 |                 0 |          8 | 2020-09-03 00:00:00 |     3.7471  |
+|  18 | DuPage       |        3381 |             210 |                    4.9 |                 0 |          8 | 2020-09-04 00:00:00 |     6.21118 |
+|  20 | DuPage       |        2424 |             131 |                    4.8 |                 0 |          8 | 2020-09-05 00:00:00 |     5.40429 |
+|  22 | DuPage       |        1620 |              93 |                    4.9 |                 0 |          8 | 2020-09-06 00:00:00 |     5.74074 |
+|  24 | DuPage       |        1624 |             133 |                    5.1 |                 0 |          8 | 2020-09-07 00:00:00 |     8.18966 |
+|  26 | DuPage       |        2119 |             101 |                    5.1 |                 0 |          8 | 2020-09-08 00:00:00 |     4.7664  |
+|  28 | DuPage       |        1958 |             138 |                    5.2 |                 0 |          8 | 2020-09-09 00:00:00 |     7.04801 |
+|  30 | DuPage       |        3060 |             167 |                    6   |                 0 |          8 | 2020-09-10 00:00:00 |     5.45752 |
+|  32 | DuPage       |        3250 |             138 |                    5.6 |                 0 |          8 | 2020-09-11 00:00:00 |     4.24615 |
+|  34 | DuPage       |        2339 |             134 |                    5.7 |                 0 |          8 | 2020-09-12 00:00:00 |     5.72894 |
+|  36 | DuPage       |        1848 |             107 |                    5.7 |                 0 |          8 | 2020-09-13 00:00:00 |     5.79004 |
+|  38 | DuPage       |        2051 |              82 |                    5.2 |                 0 |          8 | 2020-09-14 00:00:00 |     3.99805 |
+|  40 | DuPage       |        2744 |             144 |                    5.3 |                 0 |          8 | 2020-09-15 00:00:00 |     5.24781 |
+|  42 | DuPage       |        2385 |             104 |                    5   |                 0 |          8 | 2020-09-16 00:00:00 |     4.36059 |
+|  44 | DuPage       |        3166 |             138 |                    4.8 |                 0 |          8 | 2020-09-17 00:00:00 |     4.35881 |
+|  46 | DuPage       |        3992 |             179 |                    4.8 |                 0 |          8 | 2020-09-18 00:00:00 |     4.48397 |
+|  48 | DuPage       |        2645 |             125 |                    4.7 |                 0 |          8 | 2020-09-19 00:00:00 |     4.7259  |
+|  50 | DuPage       |        1884 |             105 |                    4.6 |                 0 |          8 | 2020-09-20 00:00:00 |     5.57325 |
+|  52 | DuPage       |        2023 |              76 |                    4.6 |                 0 |          8 | 2020-09-21 00:00:00 |     3.7568  |
+|  54 | DuPage       |        2601 |             101 |                    4.4 |                 0 |          8 | 2020-09-22 00:00:00 |     3.88312 |
+|  56 | DuPage       |        2792 |             130 |                    4.5 |                 0 |          8 | 2020-09-23 00:00:00 |     4.65616 |
+|  58 | DuPage       |        3973 |             186 |                    4.5 |                 0 |          8 | 2020-09-24 00:00:00 |     4.6816  |
+|  60 | DuPage       |        3254 |             170 |                    4.7 |                 0 |          8 | 2020-09-25 00:00:00 |     5.22434 |
+|  62 | DuPage       |        2674 |             170 |                    4.9 |                 0 |          8 | 2020-09-26 00:00:00 |     6.35752 |
+|  64 | DuPage       |        2763 |             138 |                    4.8 |                 0 |          8 | 2020-09-27 00:00:00 |     4.99457 |
+|  66 | DuPage       |        2180 |             124 |                    5   |                 0 |          8 | 2020-09-28 00:00:00 |     5.68807 |
+|  68 | DuPage       |        2468 |             121 |                    5.2 |                 0 |          8 | 2020-09-29 00:00:00 |     4.90276 |
+|  70 | DuPage       |        3520 |             140 |                    5   |                 0 |          8 | 2020-09-30 00:00:00 |     3.97727 |
+|  72 | DuPage       |        3648 |             167 |                    5   |                 0 |          8 | 2020-10-01 00:00:00 |     4.57785 |
+|  74 | DuPage       |        4026 |             144 |                    4.7 |                 0 |          8 | 2020-10-02 00:00:00 |     3.57675 |
+|  76 | DuPage       |        2896 |             128 |                    4.5 |                 0 |          8 | 2020-10-03 00:00:00 |     4.41989 |
+|  78 | DuPage       |        2335 |             115 |                    4.5 |                 0 |          8 | 2020-10-04 00:00:00 |     4.92505 |
+|  80 | DuPage       |        2003 |             123 |                    4.5 |                 0 |          8 | 2020-10-05 00:00:00 |     6.14079 |
+|  82 | DuPage       |        2588 |             152 |                    4.6 |                 0 |          8 | 2020-10-06 00:00:00 |     5.87326 |
+|  84 | DuPage       |        3971 |             238 |                    5   |                 0 |          8 | 2020-10-07 00:00:00 |     5.99345 |
+|  86 | DuPage       |        3560 |             215 |                    5.2 |                 0 |          8 | 2020-10-08 00:00:00 |     6.03933 |
+|  88 | DuPage       |        3878 |             271 |                    5.8 |                 0 |          8 | 2020-10-09 00:00:00 |     6.98814 |
+|  90 | DuPage       |        3664 |             203 |                    6   |                 0 |          8 | 2020-10-10 00:00:00 |     5.54039 |
+|  92 | DuPage       |        2985 |             199 |                    6.2 |                 0 |          8 | 2020-10-11 00:00:00 |     6.66667 |
+|  94 | DuPage       |        2395 |             189 |                    6.4 |                 0 |          8 | 2020-10-12 00:00:00 |     7.89144 |
+|  96 | DuPage       |        2575 |             209 |                    6.6 |                 0 |          8 | 2020-10-13 00:00:00 |     8.1165  |
+|  98 | DuPage       |        2161 |             181 |                    6.9 |                 0 |          8 | 2020-10-14 00:00:00 |     8.37575 |
+| 100 | DuPage       |        4828 |             385 |                    7.3 |                 0 |          8 | 2020-10-15 00:00:00 |     7.97432 |
+| 102 | DuPage       |        4093 |             273 |                    7.2 |                 0 |          8 | 2020-10-16 00:00:00 |     6.66992 |
+| 104 | DuPage       |        5477 |             431 |                    7.6 |                 0 |          8 | 2020-10-17 00:00:00 |     7.86927 |
+| 106 | DuPage       |        2644 |             221 |                    7.8 |                 0 |          8 | 2020-10-18 00:00:00 |     8.35855 |
+| 108 | DuPage       |        3106 |             305 |                    8.1 |                 0 |          8 | 2020-10-19 00:00:00 |     9.8197  |
+| 110 | DuPage       |        3131 |             268 |                    8.1 |                 0 |          8 | 2020-10-20 00:00:00 |     8.55957 |
+| 112 | DuPage       |        3642 |             301 |                    8.1 |                 0 |          8 | 2020-10-21 00:00:00 |     8.26469 |
+| 114 | DuPage       |        4614 |             348 |                    8   |                 0 |          8 | 2020-10-22 00:00:00 |     7.54226 |
+| 116 | DuPage       |        5318 |             467 |                    8.4 |                 0 |          8 | 2020-10-23 00:00:00 |     8.7815  |
+| 118 | DuPage       |        4187 |             348 |                    8.5 |                 0 |          8 | 2020-10-24 00:00:00 |     8.31144 |
+| 120 | DuPage       |        3289 |             291 |                    8.5 |                 0 |          8 | 2020-10-25 00:00:00 |     8.84767 |
+| 122 | DuPage       |        2931 |             306 |                    8.6 |                 0 |          8 | 2020-10-26 00:00:00 |    10.4401  |
+| 124 | DuPage       |        3231 |             360 |                    8.9 |                 0 |          8 | 2020-10-27 00:00:00 |    11.1421  |
+| 126 | DuPage       |        4062 |             432 |                    9.2 |                 0 |          8 | 2020-10-28 00:00:00 |    10.6352  |
+| 128 | DuPage       |        5143 |             535 |                    9.7 |                 0 |          8 | 2020-10-29 00:00:00 |    10.4025  |
+| 130 | DuPage       |        5306 |             575 |                   10.1 |                 0 |          8 | 2020-10-30 00:00:00 |    10.8368  |
+| 132 | DuPage       |        4496 |             528 |                   10.6 |                 0 |          8 | 2020-10-31 00:00:00 |    11.7438  |
+| 134 | DuPage       |        4225 |             561 |                   11.2 |                 0 |          8 | 2020-11-01 00:00:00 |    13.2781  |
+| 136 | DuPage       |        4521 |             473 |                   11.2 |                 0 |          8 | 2020-11-02 00:00:00 |    10.4623  |
+| 138 | DuPage       |        3513 |             551 |                   11.7 |                 0 |          8 | 2020-11-03 00:00:00 |    15.6846  |
+| 140 | DuPage       |        4335 |             468 |                   11.7 |                 0 |          8 | 2020-11-04 00:00:00 |    10.7958  |
+| 142 | DuPage       |        4810 |             573 |                   11.9 |                 0 |          8 | 2020-11-05 00:00:00 |    11.9127  |
+| 144 | DuPage       |        5917 |             782 |                   12.4 |                 0 |          8 | 2020-11-06 00:00:00 |    13.2162  |
+| 146 | DuPage       |        5514 |             792 |                   12.8 |                 0 |          8 | 2020-11-07 00:00:00 |    14.3634  |
+| 148 | DuPage       |        4514 |             722 |                   13.2 |                 0 |          8 | 2020-11-08 00:00:00 |    15.9947  |
+| 150 | DuPage       |        5588 |             830 |                   13.8 |                 0 |          8 | 2020-11-09 00:00:00 |    14.8533  |
+| 152 | DuPage       |        5433 |             813 |                   13.8 |                 0 |          8 | 2020-11-10 00:00:00 |    14.9641  |
+| 154 | DuPage       |        5286 |             709 |                   14.1 |                 0 |          8 | 2020-11-11 00:00:00 |    13.4128  |
+| 156 | DuPage       |        5126 |             718 |                   14.4 |                 0 |          8 | 2020-11-12 00:00:00 |    14.007   |
+| 158 | DuPage       |        6035 |             904 |                   14.6 |                 0 |          8 | 2020-11-13 00:00:00 |    14.9793  |
+| 160 | DuPage       |        4973 |             695 |                   14.6 |                 0 |          8 | 2020-11-14 00:00:00 |    13.9755  |
+| 162 | DuPage       |        5628 |             699 |                   14.1 |                 0 |          8 | 2020-11-15 00:00:00 |    12.42    |
+| 164 | DuPage       |        5619 |             756 |                   13.9 |                 0 |          8 | 2020-11-16 00:00:00 |    13.4544  |
+| 166 | DuPage       |        5626 |             695 |                   13.5 |                 0 |          8 | 2020-11-17 00:00:00 |    12.3534  |
+| 168 | DuPage       |        6029 |             817 |                   13.5 |                 0 |          8 | 2020-11-18 00:00:00 |    13.5512  |
+| 170 | DuPage       |        5344 |             747 |                   13.5 |                 0 |          8 | 2020-11-19 00:00:00 |    13.9783  |
+| 172 | DuPage       |        5755 |             739 |                   13.2 |                 0 |          8 | 2020-11-20 00:00:00 |    12.841   |
+| 174 | DuPage       |        4822 |             629 |                   13.1 |                 0 |          8 | 2020-11-21 00:00:00 |    13.0444  |
+| 176 | DuPage       |        6494 |             789 |                   13   |                 0 |          8 | 2020-11-22 00:00:00 |    12.1497  |
+| 178 | DuPage       |        6652 |             613 |                   12.3 |                 0 |          8 | 2020-11-23 00:00:00 |     9.21527 |
+| 180 | DuPage       |        6411 |             777 |                   12.3 |                 0 |          8 | 2020-11-24 00:00:00 |    12.1198  |
+|   1 | Kane         |         905 |              84 |                    6.8 |                 0 |          8 | 2020-08-26 00:00:00 |     9.28177 |
+|   3 | Kane         |        1048 |              79 |                    6.9 |                 0 |          8 | 2020-08-27 00:00:00 |     7.53817 |
+|   5 | Kane         |        1275 |              73 |                    6.4 |                 0 |          8 | 2020-08-28 00:00:00 |     5.72549 |
+|   7 | Kane         |        1118 |              86 |                    6.5 |                 0 |          8 | 2020-08-29 00:00:00 |     7.69231 |
+|   9 | Kane         |         908 |              62 |                    6.6 |                 0 |          8 | 2020-08-30 00:00:00 |     6.82819 |
+|  11 | Kane         |         551 |              70 |                    7.3 |                 0 |          8 | 2020-08-31 00:00:00 |    12.7042  |
+|  13 | Kane         |        1043 |              91 |                    8   |                 0 |          8 | 2020-09-01 00:00:00 |     8.72483 |
+|  15 | Kane         |        1154 |              47 |                    7.2 |                 0 |          8 | 2020-09-02 00:00:00 |     4.07279 |
+|  17 | Kane         |        3647 |             192 |                    6.4 |                 0 |          8 | 2020-09-03 00:00:00 |     5.2646  |
+|  19 | Kane         |        2110 |             142 |                    6.6 |                 0 |          8 | 2020-09-04 00:00:00 |     6.72986 |
+|  21 | Kane         |         982 |              70 |                    6.5 |                 0 |          8 | 2020-09-05 00:00:00 |     7.12831 |
+|  23 | Kane         |         608 |              59 |                    6.6 |                 0 |          8 | 2020-09-06 00:00:00 |     9.70395 |
+|  25 | Kane         |         828 |              61 |                    6.4 |                 0 |          8 | 2020-09-07 00:00:00 |     7.36715 |
+|  27 | Kane         |        1221 |              68 |                    6.1 |                 0 |          8 | 2020-09-08 00:00:00 |     5.56921 |
+|  29 | Kane         |        1496 |              83 |                    6.2 |                 0 |          8 | 2020-09-09 00:00:00 |     5.54813 |
+|  31 | Kane         |        1718 |              71 |                    6.2 |                 0 |          8 | 2020-09-10 00:00:00 |     4.13271 |
+|  33 | Kane         |        1704 |             104 |                    6   |                 0 |          8 | 2020-09-11 00:00:00 |     6.10329 |
+|  35 | Kane         |        1036 |              69 |                    6   |                 0 |          8 | 2020-09-12 00:00:00 |     6.66023 |
+|  37 | Kane         |         809 |              52 |                    5.8 |                 0 |          8 | 2020-09-13 00:00:00 |     6.42769 |
+|  39 | Kane         |         935 |              76 |                    5.9 |                 0 |          8 | 2020-09-14 00:00:00 |     8.12834 |
+|  41 | Kane         |        1698 |             111 |                    6   |                 0 |          8 | 2020-09-15 00:00:00 |     6.5371  |
+|  43 | Kane         |        1236 |             115 |                    6.5 |                 0 |          8 | 2020-09-16 00:00:00 |     9.30421 |
+|  45 | Kane         |        1713 |              93 |                    6.8 |                 0 |          8 | 2020-09-17 00:00:00 |     5.42907 |
+|  47 | Kane         |        2081 |             123 |                    6.7 |                 0 |          8 | 2020-09-18 00:00:00 |     5.91062 |
+|  49 | Kane         |        1280 |             124 |                    7.1 |                 0 |          8 | 2020-09-19 00:00:00 |     9.6875  |
+|  51 | Kane         |         947 |              77 |                    7.3 |                 0 |          8 | 2020-09-20 00:00:00 |     8.13094 |
+|  53 | Kane         |         893 |              63 |                    7.2 |                 0 |          8 | 2020-09-21 00:00:00 |     7.05487 |
+|  55 | Kane         |        1456 |              77 |                    7   |                 0 |          8 | 2020-09-22 00:00:00 |     5.28846 |
+|  57 | Kane         |        1432 |             110 |                    6.8 |                 0 |          8 | 2020-09-23 00:00:00 |     7.68156 |
+|  59 | Kane         |        1795 |             111 |                    6.9 |                 0 |          8 | 2020-09-24 00:00:00 |     6.18384 |
+|  61 | Kane         |        2031 |             117 |                    6.9 |                 0 |          8 | 2020-09-25 00:00:00 |     5.76071 |
+|  63 | Kane         |        1387 |              85 |                    6.4 |                 0 |          8 | 2020-09-26 00:00:00 |     6.12833 |
+|  65 | Kane         |        1293 |              75 |                    6.2 |                 0 |          8 | 2020-09-27 00:00:00 |     5.80046 |
+|  67 | Kane         |         961 |              56 |                    6.1 |                 0 |          8 | 2020-09-28 00:00:00 |     5.82726 |
+|  69 | Kane         |        1907 |              93 |                    6   |                 0 |          8 | 2020-09-29 00:00:00 |     4.87677 |
+|  71 | Kane         |        1461 |              93 |                    5.8 |                 0 |          8 | 2020-09-30 00:00:00 |     6.3655  |
+|  73 | Kane         |        1968 |              84 |                    5.5 |                 0 |          8 | 2020-10-01 00:00:00 |     4.26829 |
+|  75 | Kane         |        1757 |              82 |                    5.3 |                 0 |          8 | 2020-10-02 00:00:00 |     4.66705 |
+|  77 | Kane         |        1679 |             110 |                    5.4 |                 0 |          8 | 2020-10-03 00:00:00 |     6.55152 |
+|  79 | Kane         |        1048 |              78 |                    5.5 |                 0 |          8 | 2020-10-04 00:00:00 |     7.44275 |
+|  81 | Kane         |        1108 |              68 |                    5.6 |                 0 |          8 | 2020-10-05 00:00:00 |     6.13718 |
+|  83 | Kane         |        1900 |             140 |                    6   |                 0 |          8 | 2020-10-06 00:00:00 |     7.36842 |
+|  85 | Kane         |        2041 |             102 |                    5.8 |                 0 |          8 | 2020-10-07 00:00:00 |     4.99755 |
+|  87 | Kane         |        1722 |             129 |                    6.3 |                 0 |          8 | 2020-10-08 00:00:00 |     7.49129 |
+|  89 | Kane         |        1610 |             153 |                    7   |                 0 |          8 | 2020-10-09 00:00:00 |     9.50311 |
+|  91 | Kane         |        1754 |             135 |                    7.2 |                 0 |          8 | 2020-10-10 00:00:00 |     7.69669 |
+|  93 | Kane         |        1330 |             143 |                    7.6 |                 0 |          8 | 2020-10-11 00:00:00 |    10.7519  |
+|  95 | Kane         |        1542 |             164 |                    8.1 |                 0 |          8 | 2020-10-12 00:00:00 |    10.6355  |
+|  97 | Kane         |        1267 |             197 |                    9.1 |                 0 |          8 | 2020-10-13 00:00:00 |    15.5485  |
+|  99 | Kane         |        1681 |             158 |                    9.9 |                 0 |          8 | 2020-10-14 00:00:00 |     9.39917 |
+| 101 | Kane         |        2232 |             268 |                   10.7 |                 0 |          8 | 2020-10-15 00:00:00 |    12.0072  |
+| 103 | Kane         |        2026 |             227 |                   10.9 |                 0 |          8 | 2020-10-16 00:00:00 |    11.2043  |
+| 105 | Kane         |        2026 |             278 |                   11.9 |                 0 |          8 | 2020-10-17 00:00:00 |    13.7216  |
+| 107 | Kane         |        1722 |             184 |                   11.8 |                 0 |          8 | 2020-10-18 00:00:00 |    10.6852  |
+| 109 | Kane         |        1715 |             215 |                   12.1 |                 0 |          8 | 2020-10-19 00:00:00 |    12.5364  |
+| 111 | Kane         |        1694 |             222 |                   11.9 |                 0 |          8 | 2020-10-20 00:00:00 |    13.1051  |
+| 113 | Kane         |        2565 |             241 |                   11.7 |                 0 |          8 | 2020-10-21 00:00:00 |     9.39571 |
+| 115 | Kane         |        2393 |             260 |                   11.5 |                 0 |          8 | 2020-10-22 00:00:00 |    10.865   |
+| 117 | Kane         |        1998 |             239 |                   11.6 |                 0 |          8 | 2020-10-23 00:00:00 |    11.962   |
+| 119 | Kane         |        1901 |             237 |                   11.4 |                 0 |          8 | 2020-10-24 00:00:00 |    12.4671  |
+| 121 | Kane         |        2149 |             252 |                   11.6 |                 0 |          8 | 2020-10-25 00:00:00 |    11.7264  |
+| 123 | Kane         |        1717 |             217 |                   11.6 |                 0 |          8 | 2020-10-26 00:00:00 |    12.6383  |
+| 125 | Kane         |        2775 |             303 |                   11.3 |                 0 |          8 | 2020-10-27 00:00:00 |    10.9189  |
+| 127 | Kane         |        2586 |             346 |                   11.9 |                 0 |          8 | 2020-10-28 00:00:00 |    13.3797  |
+| 129 | Kane         |        2484 |             306 |                   12.2 |                 0 |          8 | 2020-10-29 00:00:00 |    12.3188  |
+| 131 | Kane         |        2771 |             416 |                   12.7 |                 0 |          8 | 2020-10-30 00:00:00 |    15.0126  |
+| 133 | Kane         |        2451 |             389 |                   13.2 |                 0 |          8 | 2020-10-31 00:00:00 |    15.8711  |
+| 135 | Kane         |        1803 |             287 |                   13.6 |                 0 |          8 | 2020-11-01 00:00:00 |    15.9179  |
+| 137 | Kane         |        2985 |             444 |                   14   |                 0 |          8 | 2020-11-02 00:00:00 |    14.8744  |
+| 139 | Kane         |        2554 |             389 |                   14.6 |                 0 |          8 | 2020-11-03 00:00:00 |    15.231   |
+| 141 | Kane         |        2401 |             381 |                   15   |                 0 |          8 | 2020-11-04 00:00:00 |    15.8684  |
+| 143 | Kane         |        2816 |             474 |                   15.6 |                 0 |          8 | 2020-11-05 00:00:00 |    16.8324  |
+| 145 | Kane         |        3895 |             654 |                   16   |                 0 |          8 | 2020-11-06 00:00:00 |    16.7908  |
+| 147 | Kane         |        2815 |             588 |                   16.7 |                 0 |          8 | 2020-11-07 00:00:00 |    20.8881  |
+| 149 | Kane         |        1981 |             426 |                   17.3 |                 0 |          8 | 2020-11-08 00:00:00 |    21.5043  |
+| 151 | Kane         |        3118 |             507 |                   17.5 |                 0 |          8 | 2020-11-09 00:00:00 |    16.2604  |
+| 153 | Kane         |        3456 |             612 |                   17.8 |                 0 |          8 | 2020-11-10 00:00:00 |    17.7083  |
+| 155 | Kane         |        3219 |             566 |                   18   |                 0 |          8 | 2020-11-11 00:00:00 |    17.5831  |
+| 157 | Kane         |        2714 |             522 |                   18.3 |                 0 |          8 | 2020-11-12 00:00:00 |    19.2336  |
+| 159 | Kane         |        3465 |             593 |                   18.4 |                 0 |          8 | 2020-11-13 00:00:00 |    17.114   |
+| 161 | Kane         |        2570 |             458 |                   18   |                 0 |          8 | 2020-11-14 00:00:00 |    17.821   |
+| 163 | Kane         |        2673 |             457 |                   17.5 |                 0 |          8 | 2020-11-15 00:00:00 |    17.0969  |
+| 165 | Kane         |        3034 |             430 |                   17.2 |                 0 |          8 | 2020-11-16 00:00:00 |    14.1727  |
+| 167 | Kane         |        3236 |             458 |                   16.7 |                 0 |          8 | 2020-11-17 00:00:00 |    14.1533  |
+| 169 | Kane         |        3143 |             639 |                   17.1 |                 0 |          8 | 2020-11-18 00:00:00 |    20.3309  |
+| 171 | Kane         |        3792 |             550 |                   16.4 |                 0 |          8 | 2020-11-19 00:00:00 |    14.5042  |
+| 173 | Kane         |        3646 |             706 |                   16.7 |                 0 |          8 | 2020-11-20 00:00:00 |    19.3637  |
+| 175 | Kane         |        2367 |             486 |                   17   |                 0 |          8 | 2020-11-21 00:00:00 |    20.5323  |
+| 177 | Kane         |        3126 |             477 |                   16.8 |                 0 |          8 | 2020-11-22 00:00:00 |    15.2591  |
+| 179 | Kane         |        2838 |             323 |                   16.4 |                 0 |          8 | 2020-11-23 00:00:00 |    11.3813  |
+| 181 | Kane         |        3790 |             517 |                   16.3 |                 0 |          8 | 2020-11-24 00:00:00 |    13.6412  |
++-----+--------------+-------------+-----------------+------------------------+-------------------+------------+---------------------+-------------+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Aside:-Same-Pandas-Data-Visualized">
+<a class="anchor" href="#Aside:-Same-Pandas-Data-Visualized" aria-hidden="true"><span class="octicon octicon-link"></span></a>Aside: Same Pandas Data Visualized<a class="anchor-link" href="#Aside:-Same-Pandas-Data-Visualized"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="nd">@interact</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">days</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">graph</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">days</span><span class="o">=</span><span class="mi">93</span><span class="p">):</span>
+    <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.dpi'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dpi</span>
+    <span class="n">number_prev_days</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span> <span class="p">(</span><span class="n">days</span><span class="p">)</span>
+    <span class="n">filtered_df</span><span class="o">=</span><span class="n">county_test_pos_rates_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">"date &lt;= '</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="si">}</span><span class="s2">' and date &gt;= '</span><span class="si">{</span><span class="n">number_prev_days</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+    <span class="n">filtered_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">'daily_avg'</span><span class="p">,</span> <span class="s1">'positivityRollingAvg'</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">'date'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="darrida/darrida-fastpages"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/general/2020/11/23/Print-Simple-Tables.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A fastpages blog mainly for my own reference documentation.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/darrida" title="darrida"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/benhammond" title="benhammond"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

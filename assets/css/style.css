@@ -180,9 +180,9 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
 .highlighter-rouge .highlight { background: #eeeeff; }
 
 /** Wrapper */
-.wrapper { max-width: calc(1000px - (30x)); margin-right: auto; margin-left: auto; padding-right: 15x; padding-left: 15x; }
+.wrapper { max-width: calc(900px - (30x)); margin-right: auto; margin-left: auto; padding-right: 15x; padding-left: 15x; }
 
-@media screen and (min-width: 800px) { .wrapper { max-width: calc(1000px - (30x * 2)); padding-right: 30x; padding-left: 30x; } }
+@media screen and (min-width: 800px) { .wrapper { max-width: calc(900px - (30x * 2)); padding-right: 30x; padding-left: 30x; } }
 
 /** Clearfix */
 .wrapper:after { content: ""; display: table; clear: both; }

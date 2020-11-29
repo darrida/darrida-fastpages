@@ -26,6 +26,239 @@ layout: notebook
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-output</span>
+<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
+
+<span class="n">query_url</span> <span class="o">=</span> <span class="s1">&#39;https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetResurgenceData?regionID=8&amp;daysIncluded=3&#39;</span> <span class="c1">#+ selectedRegion + &#39;&amp;daysIncluded=&#39; + chartRange</span>
+
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">&#39;CLI ADMISSIONS&#39;</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;CLIAdmissions&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">&#39;COUNTRY TEST POSITIVITY REPORTS&#39;</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;CountyTestPositivityReports&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">&#39;HOSPITAL AVAILABILITY&#39;</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;HospitalAvailability&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">&#39;HOSPITAL BEDS IN USE AVG&#39;</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;HospitalBedsInUseAvg&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">&#39;TEST POSITIVITY&#39;</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;TestPositivity&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">&#39;LAST UPDATED DATE&#39;</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;lastUpdatedDate&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">build_title</span><span class="p">(</span><span class="s1">&#39;REGION METRICS&#39;</span><span class="p">))</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;regionMetrics&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-------------------------------
+CLI ADMISSIONS
+-------------------------------
+
+[{&#39;CLIAdmissionsRA&#39;: 54.0,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-22T00:00:00&#39;},
+ {&#39;CLIAdmissionsRA&#39;: 52.0,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-23T00:00:00&#39;},
+ {&#39;CLIAdmissionsRA&#39;: 50.0,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-24T00:00:00&#39;},
+ {&#39;CLIAdmissionsRA&#39;: 50.0,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-25T00:00:00&#39;}]
+-------------------------------
+COUNTRY TEST POSITIVITY REPORTS
+-------------------------------
+
+[{&#39;countyTestPositivities&#39;: [{&#39;CountyName&#39;: &#39;DuPage&#39;,
+                              &#39;dailyPositivity&#39;: 0.0,
+                              &#39;positive_test&#39;: 789,
+                              &#39;positivityRollingAvg&#39;: 13.0,
+                              &#39;regionID&#39;: 8,
+                              &#39;totalTest&#39;: 6494},
+                             {&#39;CountyName&#39;: &#39;Kane&#39;,
+                              &#39;dailyPositivity&#39;: 0.0,
+                              &#39;positive_test&#39;: 477,
+                              &#39;positivityRollingAvg&#39;: 16.8,
+                              &#39;regionID&#39;: 8,
+                              &#39;totalTest&#39;: 3126}],
+  &#39;reportDate&#39;: &#39;2020-11-22T00:00:00&#39;},
+ {&#39;countyTestPositivities&#39;: [{&#39;CountyName&#39;: &#39;DuPage&#39;,
+                              &#39;dailyPositivity&#39;: 0.0,
+                              &#39;positive_test&#39;: 613,
+                              &#39;positivityRollingAvg&#39;: 12.3,
+                              &#39;regionID&#39;: 8,
+                              &#39;totalTest&#39;: 6652},
+                             {&#39;CountyName&#39;: &#39;Kane&#39;,
+                              &#39;dailyPositivity&#39;: 0.0,
+                              &#39;positive_test&#39;: 323,
+                              &#39;positivityRollingAvg&#39;: 16.4,
+                              &#39;regionID&#39;: 8,
+                              &#39;totalTest&#39;: 2838}],
+  &#39;reportDate&#39;: &#39;2020-11-23T00:00:00&#39;},
+ {&#39;countyTestPositivities&#39;: [{&#39;CountyName&#39;: &#39;DuPage&#39;,
+                              &#39;dailyPositivity&#39;: 0.0,
+                              &#39;positive_test&#39;: 777,
+                              &#39;positivityRollingAvg&#39;: 12.3,
+                              &#39;regionID&#39;: 8,
+                              &#39;totalTest&#39;: 6411},
+                             {&#39;CountyName&#39;: &#39;Kane&#39;,
+                              &#39;dailyPositivity&#39;: 0.0,
+                              &#39;positive_test&#39;: 517,
+                              &#39;positivityRollingAvg&#39;: 16.3,
+                              &#39;regionID&#39;: 8,
+                              &#39;totalTest&#39;: 3790}],
+  &#39;reportDate&#39;: &#39;2020-11-24T00:00:00&#39;},
+ {&#39;countyTestPositivities&#39;: [{&#39;CountyName&#39;: &#39;DuPage&#39;,
+                              &#39;dailyPositivity&#39;: 0.0,
+                              &#39;positive_test&#39;: 731,
+                              &#39;positivityRollingAvg&#39;: 12.0,
+                              &#39;regionID&#39;: 8,
+                              &#39;totalTest&#39;: 6365},
+                             {&#39;CountyName&#39;: &#39;Kane&#39;,
+                              &#39;dailyPositivity&#39;: 0.0,
+                              &#39;positive_test&#39;: 409,
+                              &#39;positivityRollingAvg&#39;: 15.5,
+                              &#39;regionID&#39;: 8,
+                              &#39;totalTest&#39;: 2847}],
+  &#39;reportDate&#39;: &#39;2020-11-25T00:00:00&#39;}]
+-------------------------------
+HOSPITAL AVAILABILITY
+-------------------------------
+
+[{&#39;AverageICUAvailPct&#39;: 0.191328934,
+  &#39;AverageMedSurgAvailPct&#39;: 0.166729678,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-24T00:00:00&#39;},
+ {&#39;AverageICUAvailPct&#39;: 0.193798449,
+  &#39;AverageMedSurgAvailPct&#39;: 0.170912547,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-25T00:00:00&#39;},
+ {&#39;AverageICUAvailPct&#39;: 0.200581395,
+  &#39;AverageMedSurgAvailPct&#39;: 0.200609059,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-26T00:00:00&#39;},
+ {&#39;AverageICUAvailPct&#39;: 0.204457364,
+  &#39;AverageMedSurgAvailPct&#39;: 0.225142857,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-27T00:00:00&#39;}]
+-------------------------------
+HOSPITAL BEDS IN USE AVG
+-------------------------------
+
+[{&#39;COVIDHospitalBedsInUseAvg&#39;: 712,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-24T00:00:00&#39;},
+ {&#39;COVIDHospitalBedsInUseAvg&#39;: 706,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-25T00:00:00&#39;},
+ {&#39;COVIDHospitalBedsInUseAvg&#39;: 691,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-26T00:00:00&#39;},
+ {&#39;COVIDHospitalBedsInUseAvg&#39;: 677,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-27T00:00:00&#39;}]
+-------------------------------
+TEST POSITIVITY
+-------------------------------
+
+[{&#39;positiveTests&#39;: 1266,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-22T00:00:00&#39;,
+  &#39;testPositivityRollingAvg&#39;: 14.4,
+  &#39;totalTests&#39;: 9620},
+ {&#39;positiveTests&#39;: 936,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-23T00:00:00&#39;,
+  &#39;testPositivityRollingAvg&#39;: 13.8,
+  &#39;totalTests&#39;: 9490},
+ {&#39;positiveTests&#39;: 1294,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-24T00:00:00&#39;,
+  &#39;testPositivityRollingAvg&#39;: 13.7,
+  &#39;totalTests&#39;: 10201},
+ {&#39;positiveTests&#39;: 1140,
+  &#39;regionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;regionID&#39;: 8,
+  &#39;reportDate&#39;: &#39;2020-11-25T00:00:00&#39;,
+  &#39;testPositivityRollingAvg&#39;: 13.2,
+  &#39;totalTests&#39;: 9212}]
+-------------------------------
+LAST UPDATED DATE
+-------------------------------
+
+{&#39;day&#39;: 28, &#39;month&#39;: 11, &#39;year&#39;: 2020}
+-------------------------------
+REGION METRICS
+-------------------------------
+
+[{&#39;CLIAdmissions_RollingAvg&#39;: 50.0,
+  &#39;COVIDHospitalBedsInUse&#39;: 712.0,
+  &#39;ICUAvailPct_Avg&#39;: &#39;19.13 %&#39;,
+  &#39;MedSurgAvailPct_Avg&#39;: &#39;16.67 %&#39;,
+  &#39;PositiveTests&#39;: 1294,
+  &#39;RegionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;RegionID&#39;: 8,
+  &#39;ReportDate&#39;: &#39;2020-11-24T00:00:00&#39;,
+  &#39;TestPositivity_RollingAvg&#39;: 13.7,
+  &#39;TotalTests&#39;: 10201},
+ {&#39;CLIAdmissions_RollingAvg&#39;: 50.0,
+  &#39;COVIDHospitalBedsInUse&#39;: 706.0,
+  &#39;ICUAvailPct_Avg&#39;: &#39;19.38 %&#39;,
+  &#39;MedSurgAvailPct_Avg&#39;: &#39;17.09 %&#39;,
+  &#39;PositiveTests&#39;: 1140,
+  &#39;RegionDescription&#39;: &#39;West Suburban&#39;,
+  &#39;RegionID&#39;: 8,
+  &#39;ReportDate&#39;: &#39;2020-11-25T00:00:00&#39;,
+  &#39;TestPositivity_RollingAvg&#39;: 13.2,
+  &#39;TotalTests&#39;: 9212}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Manually-Created-Tables">Manually Created Tables<a class="anchor-link" href="#Manually-Created-Tables"> </a></h2>

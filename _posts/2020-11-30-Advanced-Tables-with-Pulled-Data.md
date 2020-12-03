@@ -5,6 +5,7 @@ title: Advanced Tables with Pulled Data
 toc: true
 badges: true
 comments: true
+hide: true
 categories: [general]
 nb_path: _notebooks/2020-11-30-Advanced Tables with Pulled Data.ipynb
 layout: notebook

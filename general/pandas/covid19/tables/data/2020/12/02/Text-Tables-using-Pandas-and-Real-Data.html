@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Plain Text Tables using Pandas and Real Data | Darrida</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Plain Text Tables using Pandas and Real Data" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Sample Covid-19 API Data pulled, flattened, imported into pandas dataframe, and printed to plain text table." />
+<meta property="og:description" content="Sample Covid-19 API Data pulled, flattened, imported into pandas dataframe, and printed to plain text table." />
+<link rel="canonical" href="https://darrida.com/general/pandas/covid19/tables/data/2020/12/02/Text-Tables-using-Pandas-and-Real-Data.html" />
+<meta property="og:url" content="https://darrida.com/general/pandas/covid19/tables/data/2020/12/02/Text-Tables-using-Pandas-and-Real-Data.html" />
+<meta property="og:site_name" content="Darrida" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-02T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"Sample Covid-19 API Data pulled, flattened, imported into pandas dataframe, and printed to plain text table.","@type":"BlogPosting","url":"https://darrida.com/general/pandas/covid19/tables/data/2020/12/02/Text-Tables-using-Pandas-and-Real-Data.html","dateModified":"2020-12-02T00:00:00-06:00","datePublished":"2020-12-02T00:00:00-06:00","headline":"Plain Text Tables using Pandas and Real Data","mainEntityOfPage":{"@type":"WebPage","@id":"https://darrida.com/general/pandas/covid19/tables/data/2020/12/02/Text-Tables-using-Pandas-and-Real-Data.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://darrida.com/feed.xml" title="Darrida" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-57531313-5','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Darrida</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Plain Text Tables using Pandas and Real Data</h1><p class="page-description">Sample Covid-19 API Data pulled, flattened, imported into pandas dataframe, and printed to plain text table.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-12-02T00:00:00-06:00" itemprop="datePublished">
+        Dec 2, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      12 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#general">general</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#pandas">pandas</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#covid19">covid19</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#tables">tables</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#data">data</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/darrida/darrida-fastpages/tree/master/_notebooks/2020-12-3-Text Tables using Pandas and Real Data.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/darrida/darrida-fastpages/master?filepath=_notebooks%2F2020-12-3-Text+Tables+using+Pandas+and+Real+Data.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/darrida/darrida-fastpages/blob/master/_notebooks/2020-12-3-Text Tables using Pandas and Real Data.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Pull-Data-into-Pandas-and-Print-with-Tabulate">Pull Data into Pandas and Print with Tabulate </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Step-1:-Pull-Parse-Data-at-a-High-Level">Step 1: Pull Parse Data at a High Level </a></li>
+<li class="toc-entry toc-h3"><a href="#Step-2:-Flatten-Nested-Data-into-Single-Level-JSON-Objects">Step 2: Flatten Nested Data into Single Level JSON Objects </a></li>
+<li class="toc-entry toc-h3"><a href="#Step-3:-Import-Data-into-Pandas,-a-Little-Cleanup,-and-Reorder-Columns">Step 3: Import Data into Pandas, a Little Cleanup, and Reorder Columns </a></li>
+<li class="toc-entry toc-h3"><a href="#Step-4:-Data-Cleanup-in-Pandas">Step 4: Data Cleanup in Pandas </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Extra:-The-Code-Works-for-Any-Region-or-Number-of-Days">Extra: The Code Works for Any Region or Number of Days </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-12-3-Text Tables using Pandas and Real Data.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pull-Data-into-Pandas-and-Print-with-Tabulate">
+<a class="anchor" href="#Pull-Data-into-Pandas-and-Print-with-Tabulate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pull Data into Pandas and Print with Tabulate<a class="anchor-link" href="#Pull-Data-into-Pandas-and-Print-with-Tabulate"> </a>
+</h2>
+<h3 id="Step-1:-Pull-Parse-Data-at-a-High-Level">
+<a class="anchor" href="#Step-1:-Pull-Parse-Data-at-a-High-Level" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Pull Parse Data at a High Level<a class="anchor-link" href="#Step-1:-Pull-Parse-Data-at-a-High-Level"> </a>
+</h3>
+<ul>
+<li>
+<code>requests</code> is used to query region 8 data from an IL IDPH endpoint</li>
+<li>
+<code>json</code> parses the chunk of data needed</li>
+<li>In the output below it shows that the json structure currently is broken into an object that lists the date, then has additional nested objects for all of the individual country data for that date.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">query_url</span> <span class="o">=</span> <span class="s1">'https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetResurgenceData?regionID=8&amp;daysIncluded=5'</span> <span class="c1"># max is 170 days #+ selectedRegion + '&amp;daysIncluded=' + chartRange</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span>
+
+<span class="c1"># Use just the county level positivity reports</span>
+<span class="n">positivity_rates</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'CountyTestPositivityReports'</span><span class="p">]</span>
+
+<span class="n">print_title</span><span class="p">(</span><span class="s1">'2 DAYS OF DATA IN RAW FORM'</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">positivity_rates</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>--------------------------
+2 DAYS OF DATA IN RAW FORM
+--------------------------
+[{'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 777,
+                              'positivityRollingAvg': 12.3,
+                              'regionID': 8,
+                              'totalTest': 6411},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 517,
+                              'positivityRollingAvg': 16.3,
+                              'regionID': 8,
+                              'totalTest': 3790}],
+  'reportDate': '2020-11-24T00:00:00'},
+ {'countyTestPositivities': [{'CountyName': 'DuPage',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 731,
+                              'positivityRollingAvg': 12.0,
+                              'regionID': 8,
+                              'totalTest': 6365},
+                             {'CountyName': 'Kane',
+                              'dailyPositivity': 0.0,
+                              'positive_test': 409,
+                              'positivityRollingAvg': 15.5,
+                              'regionID': 8,
+                              'totalTest': 2847}],
+  'reportDate': '2020-11-25T00:00:00'}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-2:-Flatten-Nested-Data-into-Single-Level-JSON-Objects">
+<a class="anchor" href="#Step-2:-Flatten-Nested-Data-into-Single-Level-JSON-Objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Flatten Nested Data into Single Level JSON Objects<a class="anchor-link" href="#Step-2:-Flatten-Nested-Data-into-Single-Level-JSON-Objects"> </a>
+</h3>
+<ul>
+<li>It's much easier to import into Pandas when a json object (or any object for that matter, such as a list or tuple) is only one level deep. If data is nested, Pandas' default behavior is to import an entire nested object into a single cell.</li>
+<li>The code below takes the existing list of json objects, and pulls each nested piece of county information out to insert into a new list at the top level.<ul>
+<li>While the code creates the new list, line by line, it also inserts the date (converted to a datetime object) into each section as it's processed.</li>
+</ul>
+</li>
+<li>In the output below shows a bit of the new json structure. It's a list of non-nested json objects, and each one is associated with date.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">flattened_positivity_rates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">dates</span> <span class="ow">in</span> <span class="n">positivity_rates</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">county</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">[</span><span class="s1">'countyTestPositivities'</span><span class="p">]:</span>
+        <span class="n">county</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dates</span><span class="p">[</span><span class="s1">'reportDate'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S"</span><span class="p">)</span>
+        <span class="n">flattened_positivity_rates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">county</span><span class="p">)</span>
+
+<span class="n">print_title</span><span class="p">(</span><span class="s1">'SAME 2 DAYS OF DATA, BUT FLATTENED'</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">flattened_positivity_rates</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>----------------------------------
+SAME 2 DAYS OF DATA, BUT FLATTENED
+----------------------------------
+[{'CountyName': 'DuPage',
+  'dailyPositivity': 0.0,
+  'date': datetime.datetime(2020, 11, 24, 0, 0),
+  'positive_test': 777,
+  'positivityRollingAvg': 12.3,
+  'regionID': 8,
+  'totalTest': 6411},
+ {'CountyName': 'Kane',
+  'dailyPositivity': 0.0,
+  'date': datetime.datetime(2020, 11, 24, 0, 0),
+  'positive_test': 517,
+  'positivityRollingAvg': 16.3,
+  'regionID': 8,
+  'totalTest': 3790}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-3:-Import-Data-into-Pandas,-a-Little-Cleanup,-and-Reorder-Columns">
+<a class="anchor" href="#Step-3:-Import-Data-into-Pandas,-a-Little-Cleanup,-and-Reorder-Columns" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 3: Import Data into Pandas, a Little Cleanup, and Reorder Columns<a class="anchor-link" href="#Step-3:-Import-Data-into-Pandas,-a-Little-Cleanup,-and-Reorder-Columns"> </a>
+</h3>
+<ul>
+<li>Once each json object in the list is only single level, creating a pandas dataframe out it is a simple one line statement.</li>
+<li>One thing that doesn't come with this dataset is the daily average, but it includes the data needs to calculate it. Again, calculating the data and inserting it as a new column is a single line statement.</li>
+<li>Finally, it's easy to reorder the columns, and leave out unneeded columns in a single statement as well. The output above shows 'dailyPositivity' with a value of 0 - which is the same for every json object in the entire dataset. In the reorder columns statement below removing it is a simple as leaving it out.</li>
+<li>The results can be seen in the output below. This has the data that's needed, but it's still pretty messy.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># Create pandas dataframe</span>
+<span class="n">region_rates_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">flattened_positivity_rates</span><span class="p">)</span>
+
+<span class="c1"># Calulate daily average based on using total tests and the daily positive tests</span>
+<span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'daily_avg'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'positive_test'</span><span class="p">]</span> <span class="o">/</span> <span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'totalTest'</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Reorder Columns</span>
+<span class="n">region_rates_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">region_rates_df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'date'</span><span class="p">,</span> <span class="s1">'regionID'</span><span class="p">,</span> <span class="s1">'CountyName'</span><span class="p">,</span> <span class="s1">'totalTest'</span><span class="p">,</span> <span class="s1">'positive_test'</span><span class="p">,</span> <span class="s1">'daily_avg'</span><span class="p">,</span> <span class="s1">'positivityRollingAvg'</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-4:-Data-Cleanup-in-Pandas">
+<a class="anchor" href="#Step-4:-Data-Cleanup-in-Pandas" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 4: Data Cleanup in Pandas<a class="anchor-link" href="#Step-4:-Data-Cleanup-in-Pandas"> </a>
+</h3>
+<ul>
+<li>Renaming columns is a single step, and the order here doesn't matter (does not change the order in the dataframe)</li>
+<li>Cleaning up the date format is simple, especially because when the json was flattened the date was inserted as a datetime formatted object (which was converted to a pandas "timestamp" by the dataframe import process)<ul>
+<li>Above the date may look fine, but that's because the Jupyter Lab pandas printout removes the hours, minutes, seconds, and microseconds if they are zeros. In reality the actual values looked something like the following: '2020-11-17T00:00:00:00'.</li>
+</ul>
+</li>
+<li>The original Daily Avg calculation didn't specify decimal place at all. <code>.round(2)</code> easy changes that.</li>
+<li>Finally, it makes sense to make certain that the rows are sorted by date.</li>
+<li>In the out put below, everything looks much better, but the back and forth of DuPage and Kane makes it a little difficult to read.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">region_rates_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'date'</span><span class="p">:</span><span class="s1">'Date'</span><span class="p">,</span> <span class="s1">'regionID'</span><span class="p">:</span><span class="s1">'Region'</span><span class="p">,</span> <span class="s1">'CountyName'</span><span class="p">:</span><span class="s1">'County'</span><span class="p">,</span> <span class="s1">'totalTest'</span><span class="p">:</span><span class="s1">'Total Tests'</span><span class="p">,</span>
+             <span class="s1">'daily_avg'</span><span class="p">:</span><span class="s1">'Daily Avg'</span><span class="p">,</span> <span class="s1">'positivityRollingAvg'</span><span class="p">:</span><span class="s1">'Rolling Avg'</span><span class="p">,</span> <span class="s1">'positive_test'</span><span class="p">:</span><span class="s1">'Positive'</span><span class="p">},</span> 
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="c1"># Shorten 'Date'</span>
+<span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%m/</span><span class="si">%d</span><span class="s1">/%Y'</span><span class="p">)</span>
+
+<span class="c1"># Round Daily Avg to 2 Decimal Places</span>
+<span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'Daily Avg'</span><span class="p">]</span> <span class="o">=</span> <span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'Daily Avg'</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Sort dataframe by 'Date'</span>
+<span class="n">region_rates_df</span> <span class="o">=</span> <span class="n">region_rates_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">'Date'</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Step 5: Print Individual County Date into Plain Text Tables</p>
+<ul>
+<li>The Jupyter Lab printouts of dataframes looks pretty nice, but when printing to a console it looks much more rudementary.</li>
+<li>Below, <code>.unique()</code> (actually a 'numpy' library feature) pulls out the county names represented in the dataframe into a 'numpy' array.<ul>
+<li>Similar to objects like lists, the numpy array can be iterated.</li>
+</ul>
+</li>
+<li>The print statement does several things:<ul>
+<li>Takes the entire dataframe on each pass (may not be a good idea if the dataframe were very large) and filters it to only include rows with the County name represented by the 'name' variable.</li>
+<li>Sets headers as 'keys', which just specifies that the headers show up. This parameter works differently depending on the kind of input (i.e., if printing a list of lists where index 0 was a list of headers, <code>headers=list[0]</code> would be used instead)</li>
+<li>Sets the table format. Tabulate has a long list of formats available for use.</li>
+<li>Removes the index (in this case the index that Pandas uses by default)</li>
+</ul>
+</li>
+<li>The output below shows the results of the work above. Each country is printed in it's own table, with data that is fairly clean and easy to read.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">counties</span> <span class="o">=</span> <span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'County'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Print a table for each county</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">counties</span><span class="p">:</span>
+    <span class="c1"># Prints individual country by filtering with a query (i.e., 'County' = name)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">region_rates_df</span><span class="p">[(</span><span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'County'</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">)],</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">'keys'</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'psql'</span><span class="p">),</span> <span class="n">showindex</span><span class="o">=</span><span class="s2">"never"</span><span class="p">),</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+------------+----------+----------+---------------+------------+-------------+---------------+
+| Date       |   Region | County   |   Total Tests |   Positive |   Daily Avg |   Rolling Avg |
+|------------+----------+----------+---------------+------------+-------------+---------------|
+| 11/24/2020 |        8 | DuPage   |          6411 |        777 |       12.12 |          12.3 |
+| 11/25/2020 |        8 | DuPage   |          6365 |        731 |       11.48 |          12   |
+| 11/26/2020 |        8 | DuPage   |          5301 |        660 |       12.45 |          11.8 |
+| 11/27/2020 |        8 | DuPage   |          5055 |        712 |       14.09 |          11.9 |
+| 11/28/2020 |        8 | DuPage   |          4505 |        474 |       10.52 |          11.7 |
+| 11/29/2020 |        8 | DuPage   |          4188 |        431 |       10.29 |          11.4 |
++------------+----------+----------+---------------+------------+-------------+---------------+ 
+
++------------+----------+----------+---------------+------------+-------------+---------------+
+| Date       |   Region | County   |   Total Tests |   Positive |   Daily Avg |   Rolling Avg |
+|------------+----------+----------+---------------+------------+-------------+---------------|
+| 11/24/2020 |        8 | Kane     |          3790 |        517 |       13.64 |          16.3 |
+| 11/25/2020 |        8 | Kane     |          2847 |        409 |       14.37 |          15.5 |
+| 11/26/2020 |        8 | Kane     |          2467 |        433 |       17.55 |          15.9 |
+| 11/27/2020 |        8 | Kane     |          2399 |        413 |       17.22 |          15.4 |
+| 11/28/2020 |        8 | Kane     |          1568 |        282 |       17.98 |          15   |
+| 11/29/2020 |        8 | Kane     |          1750 |        265 |       15.14 |          15   |
++------------+----------+----------+---------------+------------+-------------+---------------+ 
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Extra:-The-Code-Works-for-Any-Region-or-Number-of-Days">
+<a class="anchor" href="#Extra:-The-Code-Works-for-Any-Region-or-Number-of-Days" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extra: The Code Works for Any Region or Number of Days<a class="anchor-link" href="#Extra:-The-Code-Works-for-Any-Region-or-Number-of-Days"> </a>
+</h2>
+<ul>
+<li>The only hardcoded elements in the previous section were the region number and days in the initial endpoint url.</li>
+<li>This means that any region or number of days can be used and the process will work the same.</li>
+<li>The output below was produced with the same code by requesting 20 days of data from region 7. Region 7 was used because it also only has 2 counties (easier to use in a blog post), but regions with 10 or more counties work fine as well.</li>
+<li>(all of the code above pulled together in one cell can also be viewed by clicking "Expand")</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">datetime</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">sys</span>
+
+<span class="n">region</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">days</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">query_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetResurgenceData?regionID=</span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s1">&amp;daysIncluded=</span><span class="si">{</span><span class="n">days</span><span class="si">}</span><span class="s1">'</span> <span class="c1"># max is 170 days #+ selectedRegion + '&amp;daysIncluded=' + chartRange</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span>
+
+<span class="c1"># Use just the county level positivity reports</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">positivity_rates</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'CountyTestPositivityReports'</span><span class="p">]</span>
+<span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Selected json object not available. It</span><span class="se">\'</span><span class="s1">s possible an invalid region was queried'</span><span class="p">)</span>
+    <span class="k">raise</span>
+
+<span class="c1"># Flatten needed json data into a list so it can be imported to a pandas dataframe</span>
+<span class="n">flattened_positivity_rates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">dates</span> <span class="ow">in</span> <span class="n">positivity_rates</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">county</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">[</span><span class="s1">'countyTestPositivities'</span><span class="p">]:</span>
+        <span class="n">county</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dates</span><span class="p">[</span><span class="s1">'reportDate'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S"</span><span class="p">)</span>
+        <span class="n">flattened_positivity_rates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">county</span><span class="p">)</span>
+
+<span class="c1"># Create pandas dataframe</span>
+<span class="n">region_rates_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">flattened_positivity_rates</span><span class="p">)</span>
+
+<span class="c1"># Calulate daily average based on using total tests and the daily positive tests</span>
+<span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'daily_avg'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'positive_test'</span><span class="p">]</span> <span class="o">/</span> <span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'totalTest'</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Reorder Columns</span>
+<span class="n">region_rates_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">region_rates_df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'date'</span><span class="p">,</span> <span class="s1">'regionID'</span><span class="p">,</span> <span class="s1">'CountyName'</span><span class="p">,</span> <span class="s1">'totalTest'</span><span class="p">,</span> <span class="s1">'positive_test'</span><span class="p">,</span> <span class="s1">'daily_avg'</span><span class="p">,</span> <span class="s1">'positivityRollingAvg'</span><span class="p">])</span>
+
+<span class="c1"># Rename Columns</span>
+<span class="n">region_rates_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'date'</span><span class="p">:</span><span class="s1">'Date'</span><span class="p">,</span> <span class="s1">'regionID'</span><span class="p">:</span><span class="s1">'Region'</span><span class="p">,</span> <span class="s1">'CountyName'</span><span class="p">:</span><span class="s1">'County'</span><span class="p">,</span> <span class="s1">'totalTest'</span><span class="p">:</span><span class="s1">'Total Tests'</span><span class="p">,</span>
+             <span class="s1">'daily_avg'</span><span class="p">:</span><span class="s1">'Daily Avg'</span><span class="p">,</span> <span class="s1">'positivityRollingAvg'</span><span class="p">:</span><span class="s1">'Rolling Avg'</span><span class="p">,</span> <span class="s1">'positive_test'</span><span class="p">:</span><span class="s1">'Positive'</span><span class="p">},</span> 
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="c1"># Shorten 'Date'</span>
+<span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%m/</span><span class="si">%d</span><span class="s1">/%Y'</span><span class="p">)</span>
+
+<span class="c1"># Round Daily Avg to 2 Decimal Places</span>
+<span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'Daily Avg'</span><span class="p">]</span> <span class="o">=</span> <span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'Daily Avg'</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Sort dataframe by 'Date'</span>
+<span class="n">region_rates_df</span> <span class="o">=</span> <span class="n">region_rates_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">'Date'</span><span class="p">])</span>
+
+<span class="c1"># Create array of unique county names</span>
+<span class="n">counties</span> <span class="o">=</span> <span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'County'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Print a table for each county</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">counties</span><span class="p">:</span>
+    <span class="c1"># Prints individual country by filtering with a query (i.e., 'County' = name)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">region_rates_df</span><span class="p">[(</span><span class="n">region_rates_df</span><span class="p">[</span><span class="s1">'County'</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">)],</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">'keys'</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'psql'</span><span class="p">)),</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+----+------------+----------+----------+---------------+------------+-------------+---------------+
+|    | Date       |   Region | County   |   Total Tests |   Positive |   Daily Avg |   Rolling Avg |
+|----+------------+----------+----------+---------------+------------+-------------+---------------|
+|  0 | 11/09/2020 |        7 | Kankakee |           761 |        203 |       26.68 |          19.2 |
+|  2 | 11/10/2020 |        7 | Kankakee |          1383 |        220 |       15.91 |          18.8 |
+|  4 | 11/11/2020 |        7 | Kankakee |          1450 |        242 |       16.69 |          19.1 |
+|  6 | 11/12/2020 |        7 | Kankakee |          1009 |        257 |       25.47 |          20.1 |
+|  8 | 11/13/2020 |        7 | Kankakee |          1640 |        353 |       21.52 |          20.3 |
+| 10 | 11/14/2020 |        7 | Kankakee |          1143 |        343 |       30.01 |          21.9 |
+| 12 | 11/15/2020 |        7 | Kankakee |          1187 |        326 |       27.46 |          22.7 |
+| 14 | 11/16/2020 |        7 | Kankakee |           642 |        159 |       24.77 |          22.5 |
+| 16 | 11/17/2020 |        7 | Kankakee |          1268 |        189 |       14.91 |          22.4 |
+| 18 | 11/18/2020 |        7 | Kankakee |          1570 |        222 |       14.14 |          21.9 |
+| 20 | 11/19/2020 |        7 | Kankakee |          1217 |        185 |       15.2  |          20.5 |
+| 22 | 11/20/2020 |        7 | Kankakee |          2067 |        265 |       12.82 |          18.6 |
+| 24 | 11/21/2020 |        7 | Kankakee |           948 |        251 |       26.48 |          17.9 |
+| 26 | 11/22/2020 |        7 | Kankakee |          1072 |        239 |       22.29 |          17.2 |
+| 28 | 11/23/2020 |        7 | Kankakee |          1024 |        150 |       14.65 |          16.4 |
+| 30 | 11/24/2020 |        7 | Kankakee |          1753 |        225 |       12.84 |          15.9 |
+| 32 | 11/25/2020 |        7 | Kankakee |          1931 |        231 |       11.96 |          15.4 |
+| 34 | 11/26/2020 |        7 | Kankakee |           877 |        188 |       21.44 |          16   |
+| 36 | 11/27/2020 |        7 | Kankakee |           601 |        109 |       18.14 |          17   |
+| 38 | 11/28/2020 |        7 | Kankakee |          1027 |        169 |       16.46 |          15.8 |
+| 40 | 11/29/2020 |        7 | Kankakee |           756 |         91 |       12.04 |          14.6 |
++----+------------+----------+----------+---------------+------------+-------------+---------------+ 
+
++----+------------+----------+----------+---------------+------------+-------------+---------------+
+|    | Date       |   Region | County   |   Total Tests |   Positive |   Daily Avg |   Rolling Avg |
+|----+------------+----------+----------+---------------+------------+-------------+---------------|
+|  1 | 11/09/2020 |        7 | Will     |          4663 |        863 |       18.51 |          18.3 |
+|  3 | 11/10/2020 |        7 | Will     |          4160 |        808 |       19.42 |          18.5 |
+|  5 | 11/11/2020 |        7 | Will     |          4237 |        902 |       21.29 |          19.2 |
+|  7 | 11/12/2020 |        7 | Will     |          4149 |        831 |       20.03 |          19.7 |
+|  9 | 11/13/2020 |        7 | Will     |          4210 |        817 |       19.41 |          19.6 |
+| 11 | 11/14/2020 |        7 | Will     |          3461 |        821 |       23.72 |          19.9 |
+| 13 | 11/15/2020 |        7 | Will     |          4014 |        761 |       18.96 |          20.1 |
+| 15 | 11/16/2020 |        7 | Will     |          4316 |        821 |       19.02 |          20.2 |
+| 17 | 11/17/2020 |        7 | Will     |          3466 |        643 |       18.55 |          20.1 |
+| 19 | 11/18/2020 |        7 | Will     |          4186 |        752 |       17.96 |          19.6 |
+| 21 | 11/19/2020 |        7 | Will     |          4093 |        826 |       20.18 |          19.6 |
+| 23 | 11/20/2020 |        7 | Will     |          4600 |        821 |       17.85 |          19.4 |
+| 25 | 11/21/2020 |        7 | Will     |          3408 |        638 |       18.72 |          18.7 |
+| 27 | 11/22/2020 |        7 | Will     |          4131 |        682 |       16.51 |          18.4 |
+| 29 | 11/23/2020 |        7 | Will     |          3870 |        624 |       16.12 |          18   |
+| 31 | 11/24/2020 |        7 | Will     |          4729 |        768 |       16.24 |          17.6 |
+| 33 | 11/25/2020 |        7 | Will     |          4262 |        731 |       17.15 |          17.5 |
+| 35 | 11/26/2020 |        7 | Will     |          3065 |        625 |       20.39 |          17.4 |
+| 37 | 11/27/2020 |        7 | Will     |          3568 |        658 |       18.44 |          17.5 |
+| 39 | 11/28/2020 |        7 | Will     |          2673 |        490 |       18.33 |          17.4 |
+| 41 | 11/29/2020 |        7 | Will     |          2631 |        381 |       14.48 |          17.2 |
++----+------------+----------+----------+---------------+------------+-------------+---------------+ 
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="darrida/darrida-fastpages"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/general/pandas/covid19/tables/data/2020/12/02/Text-Tables-using-Pandas-and-Real-Data.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A fastpages blog mainly for my own reference documentation.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/darrida" title="darrida"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/benhammond" title="benhammond"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
